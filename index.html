@@ -694,22 +694,63 @@
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
     <div class="lightbox-close" onclick="closeLightbox()">×</div>
-    <img id="lightbox-img" src="" alt="">
+    <div id="lb-prev" onclick="lightboxPrev(event)" style="position:absolute; left:1.5rem; top:50%; transform:translateY(-50%); color:#fff; font-size:2.5rem; cursor:pointer; user-select:none; padding:1rem; opacity:0.7;">&#8249;</div>
+    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+    <div id="lb-next" onclick="lightboxNext(event)" style="position:absolute; right:1.5rem; top:50%; transform:translateY(-50%); color:#fff; font-size:2.5rem; cursor:pointer; user-select:none; padding:1rem; opacity:0.7;">&#8250;</div>
 </div>
 
 <script>
+var allImages = [];
+var currentIndex = 0;
+
+// Collect all clickable images on page load
+window.addEventListener('load', function() {
+    allImages = Array.from(document.querySelectorAll('.clickable-img'));
+});
+
 function openLightbox(src, alt) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox-img').alt = alt;
+    // Find index of clicked image
+    currentIndex = allImages.findIndex(img => img.src.includes(src.split('/').pop()));
+    if (currentIndex === -1) currentIndex = 0;
+    showImage(currentIndex);
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
+
+function showImage(index) {
+    var img = allImages[index];
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    // Show/hide arrows
+    document.getElementById('lb-prev').style.opacity = index > 0 ? '1' : '0.2';
+    document.getElementById('lb-next').style.opacity = index < allImages.length - 1 ? '1' : '0.2';
+}
+
+function lightboxPrev(e) {
+    e.stopPropagation();
+    if (currentIndex > 0) {
+        currentIndex--;
+        showImage(currentIndex);
+    }
+}
+
+function lightboxNext(e) {
+    e.stopPropagation();
+    if (currentIndex < allImages.length - 1) {
+        currentIndex++;
+        showImage(currentIndex);
+    }
+}
+
 function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = '';
 }
+
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxPrev(e);
+    if (e.key === 'ArrowRight') lightboxNext(e);
 });
 </script>
 </body>
