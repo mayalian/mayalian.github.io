@@ -63,6 +63,16 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 #lb-img{max-width:84vw;max-height:86vh;object-fit:contain}
 #lb-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif}
 
+.nasa-preview{margin-top:1.5rem;border:1px solid var(--border);background:#111;overflow:hidden;cursor:zoom-in;transition:border-color .3s,opacity .2s}
+.nasa-preview:hover{border-color:var(--accent);opacity:.9}
+.nasa-preview img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.nasa-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+.small-btn{display:inline-block;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;background:transparent;cursor:pointer}
+.small-btn:hover{background:var(--accent);color:var(--bg)}
+#lb-video{display:none;max-width:84vw;max-height:86vh;background:#000}
+#lb-caption{position:fixed;bottom:3rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif;text-align:center;max-width:80vw;line-height:1.4}
+
+
 .question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
 .question-card{border:1px solid var(--border);padding:1.4rem;background:var(--surface);color:var(--text);font-size:1.05rem;line-height:1.5}
 .question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
@@ -105,11 +115,33 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <h2>Projects &amp; Research</h2>
   <div class="eng-list">
 
-    <div class="eng-item">
+    <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">NASA Ames Research Center · 2025–2026</div>
       <div class="eng-title">Mars Rover Teleoperation Interface</div>
-      <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: How much information does a scientist actually need?</div>
-      <div class="eng-desc">Designed the operator interface for Mars rover teleoperation, presenting complex sensor data clearly enough that a scientist can make high-stakes decisions under pressure. Also built Mars habitat 3D assets. Published: NTRS 20250007247.</div>
+      <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: How do we help scientists trust information from millions of miles away?</div>
+      <div class="eng-desc">Contributed to NASA Ames' Mars exploration research by designing 3D habitat assets and interface concepts for teleoperation scenarios. Work included Subsurface Habitat: The Cave Home and Mining Operations. Published in NASA NTRS 20250007247.</div>
+      <div class="nasa-actions">
+        <a href="#" class="small-btn" onclick="openSingleVideo(event,'video/Mars%20Project%20compressed-3.mp4','video/NASA1.jpg')">Watch Video</a>
+        <a href="https://ntrs.nasa.gov/citations/20250007247" target="_blank" class="small-btn">NASA NTRS</a>
+      </div>
+      <div class="nasa-preview" onclick="openSingleVideo(event,'video/Mars%20Project%20compressed-3.mp4','video/NASA1.jpg')">
+        <img src="video/NASA1.jpg" alt="NASA Mars Project Preview">
+      </div>
+      <div class="img-grid-4">
+        <img class="thumb" data-group="nasa" data-idx="0" src="video/NASA1.jpg" alt="NASA Project 1">
+        <img class="thumb" data-group="nasa" data-idx="1" src="video/NASA2.jpg" alt="NASA Project 2">
+        <img class="thumb" data-group="nasa" data-idx="2" src="video/NASA3.jpg" alt="NASA Project 3">
+        <img class="thumb" data-group="nasa" data-idx="3" src="video/NASA4.jpg" alt="NASA Project 4">
+        <img class="thumb" data-group="nasa" data-idx="4" src="video/NASA5.jpg" alt="NASA Project 5">
+        <img class="thumb" data-group="nasa" data-idx="5" src="video/NASA6.jpg" alt="NASA Project 6">
+        <img class="thumb" data-group="nasa" data-idx="6" src="video/NASA7.jpg" alt="NASA Project 7">
+        <img class="thumb" data-group="nasa" data-idx="7" src="video/NASA8.jpg" alt="NASA Project 8">
+        <img class="thumb" data-group="nasa" data-idx="8" src="video/NASA9.jpg" alt="NASA Project 9">
+        <img class="thumb" data-group="nasa" data-idx="9" src="video/NASA10.jpg" alt="NASA Project 10">
+        <img class="thumb" data-group="nasa" data-idx="10" src="video/NASA11.jpg" alt="NASA Project 11">
+        <img class="thumb" data-group="nasa" data-idx="11" src="video/NASA12.jpg" alt="NASA Project 12">
+        <img class="thumb" data-group="nasa" data-idx="12" src="video/NASA13.jpg" alt="NASA Project 13">
+      </div>
     </div>
 
     <div class="eng-item" style="grid-column:1/-1">
@@ -314,7 +346,9 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <span id="lb-close" onclick="lbClose()">×</span>
   <span id="lb-prev" onclick="lbMove(event,-1)">&#8249;</span>
   <img id="lb-img" src="" onclick="event.stopPropagation()">
+  <video id="lb-video" controls preload="metadata" onclick="event.stopPropagation()"></video>
   <span id="lb-next" onclick="lbMove(event,1)">&#8250;</span>
+  <div id="lb-caption"></div>
   <div id="lb-counter"></div>
 </div>
 
@@ -336,7 +370,16 @@ document.querySelectorAll('.thumb').forEach(function(img) {
 
 function openSingleImage(e, src) {
   e.preventDefault();
-  LB.group = [{ src: src }];
+  LB.group = [{ type: 'image', src: src }];
+  LB.idx = 0;
+  lbShow();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openSingleVideo(e, src, poster) {
+  e.preventDefault();
+  LB.group = [{ type: 'video', src: src, poster: poster || '', caption: 'NASA Ames Research Center · Mars Project Demonstration · NTRS 20250007247' }];
   LB.idx = 0;
   lbShow();
   document.getElementById('lb').classList.add('open');
@@ -345,7 +388,30 @@ function openSingleImage(e, src) {
 
 function lbShow() {
   var item = LB.group[LB.idx];
-  document.getElementById('lb-img').src = item.src || item.getAttribute('src');
+  var img = document.getElementById('lb-img');
+  var video = document.getElementById('lb-video');
+  var caption = document.getElementById('lb-caption');
+
+  video.pause();
+  video.removeAttribute('src');
+  video.removeAttribute('poster');
+  video.load();
+
+  var isVideo = item.type === 'video';
+  if (isVideo) {
+    img.style.display = 'none';
+    video.style.display = 'block';
+    video.src = item.src;
+    if (item.poster) video.poster = item.poster;
+    caption.textContent = item.caption || '';
+    caption.style.display = item.caption ? 'block' : 'none';
+  } else {
+    video.style.display = 'none';
+    img.style.display = 'block';
+    img.src = item.src || item.getAttribute('src');
+    caption.style.display = 'none';
+    caption.textContent = '';
+  }
 
   var hasMultiple = LB.group.length > 1;
   document.getElementById('lb-prev').style.display = hasMultiple ? 'block' : 'none';
@@ -366,6 +432,10 @@ function lbMove(e, dir) {
 }
 
 function lbClose() {
+  var video = document.getElementById('lb-video');
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
   document.getElementById('lb').classList.remove('open');
   document.body.style.overflow = '';
 }
