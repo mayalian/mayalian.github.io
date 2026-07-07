@@ -311,6 +311,76 @@
             letter-spacing: 0.05em;
         }
 
+
+        /* LIGHTBOX */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 1px solid #333;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            color: #888;
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: 'Helvetica Neue', sans-serif;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover { color: var(--accent); }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-family: 'Helvetica Neue', sans-serif;
+            padding: 1rem;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover { color: var(--accent); }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+
+        .lightbox-counter {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .gallery-img {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+
+        .gallery-img:hover { opacity: 0.8; }
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
@@ -436,15 +506,15 @@
             <div class="eng-org">Santa Clara University · 2024–2025</div>
             <div class="eng-title">Municipal Finance Analytics Platform</div>
             <div class="eng-desc">Built a multi-city interactive financial analytics platform with SCU professor. Ten years of municipal budget data made explorable for city council members and policy leaders. Presented to Sunnyvale City Council.</div>
-            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
-                <img src="sunnyvale-1.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 1">
-                <img src="sunnyvale-2.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 2">
-                <img src="sunnyvale-3.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 3">
-                <img src="sunnyvale-4.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 4">
-                <img src="sunnyvale-5.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 5">
-                <img src="sunnyvale-6.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 6">
-                <img src="sunnyvale-7.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 7">
-                <img src="sunnyvale-8.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 8">
+            <div class="gallery-group" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
+                <img src="sunnyvale-1.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 1">
+                <img src="sunnyvale-2.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 2">
+                <img src="sunnyvale-3.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 3">
+                <img src="sunnyvale-4.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 4">
+                <img src="sunnyvale-5.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 5">
+                <img src="sunnyvale-6.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 6">
+                <img src="sunnyvale-7.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 7">
+                <img src="sunnyvale-8.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 8">
             </div>
         </div>
 
@@ -509,6 +579,67 @@
 <footer>
     Maya Lian · mayalian.github.io · 2025
 </footer>
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-close" onclick="closeLightbox()">×</div>
+    <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">‹</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1)">›</span>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(imgs, index) {
+        currentImages = imgs;
+        currentIndex = index;
+        updateLightbox();
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+        document.getElementById('lightbox-img').src = currentImages[currentIndex];
+        document.getElementById('lightbox-counter').textContent =
+            (currentIndex + 1) + ' / ' + currentImages.length;
+    }
+
+    function closeLightbox(event) {
+        if (!event || event.target === document.getElementById('lightbox')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function changeImage(dir) {
+        currentIndex = (currentIndex + dir + currentImages.length) % currentImages.length;
+        updateLightbox();
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'ArrowRight') changeImage(1);
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
+    });
+
+    // Initialize all gallery images
+    window.addEventListener('load', function() {
+        const galleries = document.querySelectorAll('.gallery-group');
+        galleries.forEach(function(gallery) {
+            const imgs = Array.from(gallery.querySelectorAll('.gallery-img')).map(i => i.src);
+            gallery.querySelectorAll('.gallery-img').forEach(function(img, index) {
+                img.addEventListener('click', function() {
+                    openLightbox(imgs, index);
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
