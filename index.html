@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya Lian — Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --accent: #c8a87a;
+            --text: #e8e8e8;
+            --muted: #888;
+            --border: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15,15,15,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-name {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-inner { max-width: 700px; }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: normal;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-style: italic;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-filled {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-filled:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: normal;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .about-text p strong { color: var(--text); }
+
+        .about-facts {
+            border-left: 1px solid var(--border);
+            padding-left: 2.5rem;
+        }
+
+        .fact {
+            margin-bottom: 2rem;
+        }
+
+        .fact-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .fact-value {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* PORTFOLIO GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover { border-color: var(--accent); }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            font-family: 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ENGINEERING SECTION */
+        .eng-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .eng-item {
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .eng-item:hover { border-color: var(--accent); }
+
+        .eng-org {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .eng-title {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .eng-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* DIVIDER */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Helvetica Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-facts { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; }
+            .eng-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-name">Maya Lian</div>
+    <ul class="nav-links">
+        <li><a href="#art">Art</a></li>
+        <li><a href="#engineering">Engineering</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-tag">Portfolio — 2024–2025</div>
+        <h1>Drawing, Building, and the Space Between</h1>
+        <p class="hero-sub">
+            I started as an artist who wanted to make things move.
+            I became an engineer who never stopped drawing.
+        </p>
+        <div class="hero-links">
+            <a href="#art" class="btn btn-filled">View Art</a>
+            <a href="#engineering" class="btn">Engineering Work</a>
+        </div>
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- ART SECTION -->
+<section id="art">
+    <div class="section-label">Visual Work</div>
+    <h2>Art & Animation</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-img">
+                <!-- Replace src with your actual image -->
+                <span>[ CG5 Concert Poster — Year 3 ]</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Illustration · 2024</div>
+                <div class="card-title">CG5 Annual Concert Poster</div>
+                <div class="card-desc">Official concert poster, third consecutive year. 100+ hours. Original character design inspired by CG5's music and visual identity. Signed by CG5.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span>[ Character Sheets ]</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Character Design · 2023–2024</div>
+                <div class="card-title">Character Design Sheets</div>
+                <div class="card-desc">Original characters from personal animation projects and YouTube collaborations. Turnarounds, expression sheets, and design explorations.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span>[ Animation Reel ]</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Animation · 2022–2024</div>
+                <div class="card-title">Story-Driven Animations</div>
+                <div class="card-desc">Personal YouTube channel animations. Frame-by-frame digital animation focused on character emotion and narrative timing. 12,600 subscribers.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span>[ YouTube Thumbnails ]</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Visual Design · 2023</div>
+                <div class="card-title">YouTube Head Art Director</div>
+                <div class="card-desc">Sole visual designer for 10 months. Thumbnail design, original characters, and visual system for a channel that grew from 30K to 160K subscribers.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span>[ Sketchbook ]</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tag">Sketchbook · Ongoing</div>
+                <div class="card-title">Sketchbook Pages</div>
+                <div class="card-desc">Working drawings, character studies, and late-night sketches. Where most of the thinking happens before anything becomes digital.</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- ENGINEERING SECTION -->
+<section id="engineering">
+    <div class="section-label">Engineering Work</div>
+    <h2>Projects & Research</h2>
+
+    <div class="eng-list">
+
+        <div class="eng-item">
+            <div class="eng-org">NASA Ames Research Center · 2023–2024</div>
+            <div class="eng-title">Mars Rover Teleoperation Interface</div>
+            <div class="eng-desc">Designed the operator interface for Mars rover teleoperation — presenting complex sensor data clearly enough that a scientist can make high-stakes decisions under pressure. Also built Mars habitat 3D assets. Published: NTRS 20250007247.</div>
+        </div>
+
+        <div class="eng-item">
+            <div class="eng-org">Santa Clara University · 2024–2025</div>
+            <div class="eng-title">Municipal Finance Analytics Platform</div>
+            <div class="eng-desc">Built a multi-city interactive financial analytics platform with SCU professor. Ten years of municipal budget data made explorable for city council members and policy leaders. Presented to Sunnyvale City Council.</div>
+        </div>
+
+        <div class="eng-item">
+            <div class="eng-org">Personal Project · 2023</div>
+            <div class="eng-title">Rhythm Game</div>
+            <div class="eng-desc">Built from scratch in AP CS. Spent weeks on timing systems, audio feedback, and visual response until the game stopped feeling like code and started feeling like music. The problem that turned me into an engineer.</div>
+        </div>
+
+        <div class="eng-item">
+            <div class="eng-org">Pinewood School Robotics · 2023–2024</div>
+            <div class="eng-title">Robot Intake Mechanism</div>
+            <div class="eng-desc">Lead programmer. Designed and debugged the intake system, thinking first about how the driver would physically experience resistance before deciding how the code should respond. CalGames Finalist.</div>
+        </div>
+
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <div class="section-label">About</div>
+    <h2>Who I Am</h2>
+
+    <div class="about-grid">
+        <div class="about-text">
+            <p>I grew up drawing things I didn't fully understand yet — machinery, anatomy, systems that moved in ways I wanted to figure out. Drawing was how I processed the world before I had the vocabulary for what I was doing.</p>
+
+            <p>That habit eventually showed me its own limits. A drawing can show the surface of a system. It can't show how the system <strong>behaves</strong> when a person uses it under pressure. That gap is what pulled me into engineering.</p>
+
+            <p>Now I work at the intersection: visual thinking applied to systems that people depend on. The rover interface at NASA. The financial platform a city council member uses to understand his city. The rhythm game where the engineering problem wasn't the code — it was making the experience feel right.</p>
+
+            <p>I'm a competitive speaker, a robotics programmer, an animator, and a researcher. I've never entirely belonged to one category. I think that's the most honest thing I can say about myself.</p>
+        </div>
+
+        <div class="about-facts">
+            <div class="fact">
+                <div class="fact-label">Currently</div>
+                <div class="fact-value">Senior at Pinewood School, Los Altos Hills, CA</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Research</div>
+                <div class="fact-value">NASA Ames (2 summers) · SCU Municipal Analytics · UMass ML</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Speech & Debate</div>
+                <div class="fact-value">TOC & NIETOC National Qualifier · NSDA Academic All-American · 1057 pts</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Publication</div>
+                <div class="fact-value">NTRS 20250007247</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Interests</div>
+                <div class="fact-value">Human-computer interaction · Embedded systems · Animation · Civic technology</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    Maya Lian · mayalian.github.io · 2025
+</footer>
+
+</body>
+</html>
