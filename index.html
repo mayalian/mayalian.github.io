@@ -557,13 +557,13 @@
         </div>
 
         <div class="eng-item">
-            <div class="eng-org">Personal Project · 2023</div>
+            <div class="eng-org">Personal Project · 2025</div>
             <div class="eng-title">Rhythm Game</div>
             <div class="eng-desc">Built from scratch in AP CS. Spent weeks on timing systems, audio feedback, and visual response until the game stopped feeling like code and started feeling like music. The problem that turned me into an engineer.</div>
         </div>
 
         <div class="eng-item">
-            <div class="eng-org">Pinewood School Robotics · 2023–2024</div>
+            <div class="eng-org">Pinewood School Robotics · 2023–2026</div>
             <div class="eng-title">Robot Intake Mechanism</div>
             <div class="eng-desc">Lead programmer. Designed and debugged the intake system, thinking first about how the driver would physically experience resistance before deciding how the code should respond. CalGames Finalist.</div>
         </div>
@@ -631,8 +631,15 @@
 
 
 <!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-    <div class="lightbox-close" onclick="closeLightbox()">×</div>
+<div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.93); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
+    <div onclick="closeLightbox()" style="position:absolute; top:1rem; right:1.5rem; color:#fff; font-size:2rem; cursor:pointer; line-height:1;">×</div>
+    <div style="display:flex; align-items:center; gap:1rem; max-width:95vw; max-height:90vh;" onclick="event.stopPropagation()">
+        <div id="lb-prev" onclick="lightboxPrev(event)" style="color:#fff; font-size:3rem; cursor:pointer; padding:1rem; flex-shrink:0; user-select:none;">&#8249;</div>
+        <img id="lightbox-img" src="" style="max-width:85vw; max-height:85vh; object-fit:contain;" onclick="event.stopPropagation()">
+        <div id="lb-next" onclick="lightboxNext(event)" style="color:#fff; font-size:3rem; cursor:pointer; padding:1rem; flex-shrink:0; user-select:none;">&#8250;</div>
+    </div>
+    <div id="lb-counter" style="color:#aaa; font-size:0.85rem; margin-top:0.75rem; font-family:sans-serif;"></div>
+</div>
     <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">‹</span>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
     <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1)">›</span>
@@ -640,42 +647,51 @@
 </div>
 
 <script>
-var currentGroup = [];
+var groups = {};
+var currentGroup = null;
 var currentIdx = 0;
 
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-group]').forEach(function(img) {
+        var g = img.getAttribute('data-group');
+        if (!groups[g]) groups[g] = [];
+        groups[g].push(img.src);
+    });
+});
+
 function openLightbox(groupId, index) {
-    var imgs = document.querySelectorAll('[data-group="' + groupId + '"]');
-    currentGroup = Array.from(imgs).map(img => ({src: img.src, alt: img.alt}));
+    currentGroup = groupId;
     currentIdx = index;
-    showLightboxImage();
-    document.getElementById('lightbox').classList.add('active');
+    updateLightbox();
+    document.getElementById('lightbox').style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
-function showLightboxImage() {
-    document.getElementById('lightbox-img').src = currentGroup[currentIdx].src;
-    document.getElementById('lightbox-img').alt = currentGroup[currentIdx].alt;
-    document.getElementById('lb-prev').style.opacity = currentIdx > 0 ? '1' : '0.2';
-    document.getElementById('lb-next').style.opacity = currentIdx < currentGroup.length - 1 ? '1' : '0.2';
+function updateLightbox() {
+    var imgs = groups[currentGroup];
+    document.getElementById('lightbox-img').src = imgs[currentIdx];
+    document.getElementById('lb-counter').textContent = (currentIdx + 1) + ' / ' + imgs.length;
+    document.getElementById('lb-prev').style.opacity = currentIdx > 0 ? '1' : '0.3';
+    document.getElementById('lb-next').style.opacity = currentIdx < imgs.length - 1 ? '1' : '0.3';
 }
 
 function lightboxPrev(e) {
     e.stopPropagation();
-    if (currentIdx > 0) { currentIdx--; showLightboxImage(); }
+    if (currentIdx > 0) { currentIdx--; updateLightbox(); }
 }
 
 function lightboxNext(e) {
     e.stopPropagation();
-    if (currentIdx < currentGroup.length - 1) { currentIdx++; showLightboxImage(); }
+    if (currentGroup && currentIdx < groups[currentGroup].length - 1) { currentIdx++; updateLightbox(); }
 }
 
 function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('lightbox').style.display = 'none';
     document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', function(e) {
-    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (document.getElementById('lightbox').style.display !== 'flex') return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') lightboxPrev(e);
     if (e.key === 'ArrowRight') lightboxNext(e);
