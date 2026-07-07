@@ -1,764 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maya Lian — Portfolio</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg: #0f0f0f;
-            --surface: #1a1a1a;
-            --accent: #c8a87a;
-            --text: #e8e8e8;
-            --muted: #888;
-            --border: #2a2a2a;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            padding: 1.2rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15,15,15,0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-        }
-
-        .nav-name {
-            font-size: 1rem;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            text-transform: uppercase;
-            font-family: 'Georgia', serif;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .nav-links a:hover { color: var(--accent); }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .hero-inner { max-width: 700px; }
-
-        .hero-tag {
-            font-size: 0.8rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: normal;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-sub {
-            font-size: 1.1rem;
-            color: var(--muted);
-            max-width: 520px;
-            margin: 0 auto 2.5rem;
-            font-style: italic;
-        }
-
-        .hero-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .btn:hover {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        .btn-filled {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        .btn-filled:hover {
-            background: transparent;
-            color: var(--accent);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: normal;
-            margin-bottom: 3rem;
-            letter-spacing: -0.02em;
-        }
-
-        /* ABOUT */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: var(--muted);
-            margin-bottom: 1.2rem;
-            font-size: 1rem;
-        }
-
-        .about-text p strong { color: var(--text); }
-
-        .about-facts {
-            border-left: 1px solid var(--border);
-            padding-left: 2.5rem;
-        }
-
-        .fact {
-            margin-bottom: 2rem;
-        }
-
-        .fact-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.3rem;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .fact-value {
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        /* PORTFOLIO GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: border-color 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover { border-color: var(--accent); }
-
-        .card-img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            font-family: 'Helvetica Neue', sans-serif;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* ENGINEERING SECTION */
-        .eng-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .eng-item {
-            border: 1px solid var(--border);
-            padding: 2rem;
-            transition: border-color 0.3s;
-        }
-
-        .eng-item:hover { border-color: var(--accent); }
-
-        .eng-org {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .eng-title {
-            font-size: 1.15rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .eng-desc {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* DIVIDER */
-        .divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 0;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-            font-family: 'Helvetica Neue', sans-serif;
-            letter-spacing: 0.05em;
-        }
-
-
-        /* LIGHTBOX */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .lightbox-overlay.active {
-            display: flex;
-        }
-
-        .lightbox-img {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border: 1px solid #333;
-        }
-
-        .lightbox-close {
-            position: fixed;
-            top: 1.5rem;
-            right: 2rem;
-            color: #888;
-            font-size: 2rem;
-            cursor: pointer;
-            font-family: 'Helvetica Neue', sans-serif;
-            line-height: 1;
-        }
-
-        .lightbox-close:hover { color: var(--accent); }
-
-        .lightbox-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 2.5rem;
-            cursor: pointer;
-            font-family: 'Helvetica Neue', sans-serif;
-            padding: 1rem;
-            user-select: none;
-        }
-
-        .lightbox-nav:hover { color: var(--accent); }
-        .lightbox-prev { left: 1rem; }
-        .lightbox-next { right: 1rem; }
-
-        .lightbox-counter {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #888;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .gallery-img {
-            cursor: zoom-in;
-            transition: opacity 0.2s;
-        }
-
-        .gallery-img:hover { opacity: 0.8; }
-
-        /* LIGHTBOX */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.92);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            cursor: zoom-out;
-        }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-overlay img {
-            max-width: 92vw;
-            max-height: 92vh;
-            object-fit: contain;
-            box-shadow: 0 0 60px rgba(0,0,0,0.8);
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            font-family: 'Helvetica Neue', sans-serif;
-            line-height: 1;
-            opacity: 0.7;
-        }
-        .lightbox-close:hover { opacity: 1; }
-        .clickable-img {
-            cursor: zoom-in;
-            transition: opacity 0.2s;
-        }
-        .clickable-img:hover { opacity: 0.85; }
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { gap: 1.5rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-facts { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; }
-            .eng-list { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Lian — Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f0f;--surface:#1a1a1a;--accent:#c8a87a;--text:#e8e8e8;--muted:#888;--border:#2a2a2a}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(15,15,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100}
+.nav-name{font-size:1rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;font-family:'Helvetica Neue',sans-serif}
+.nav-links a:hover{color:var(--accent)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem}
+.hero-inner{max-width:700px}
+.hero-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-family:'Helvetica Neue',sans-serif}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:normal;line-height:1.15;margin-bottom:1.5rem}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-style:italic}
+.hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.75rem 2rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;font-family:'Helvetica Neue',sans-serif}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.btn-filled{background:var(--accent);color:var(--bg)}
+.btn-filled:hover{background:transparent;color:var(--accent)}
+section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-family:'Helvetica Neue',sans-serif}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:normal;margin-bottom:3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.card{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:border-color .3s}
+.card:hover{border-color:var(--accent)}
+.card-img{width:100%;aspect-ratio:4/3;background:#222;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;letter-spacing:.1em;font-family:'Helvetica Neue',sans-serif}
+.card-body{padding:1.5rem}
+.card-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
+.card-title{font-size:1.1rem;margin-bottom:.5rem}
+.card-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+.eng-list{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.eng-item{border:1px solid var(--border);padding:2rem;transition:border-color .3s}
+.eng-item:hover{border-color:var(--accent)}
+.eng-org{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
+.eng-title{font-size:1.15rem;margin-bottom:.75rem}
+.eng-desc{font-size:.9rem;color:var(--muted);line-height:1.6}
+.img-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.5rem}
+.img-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
+.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;transition:opacity .2s}
+.thumb:hover{opacity:.82}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1.2rem;font-size:1rem}
+.about-text p strong{color:var(--text)}
+.about-facts{border-left:1px solid var(--border);padding-left:2.5rem}
+.fact{margin-bottom:2rem}
+.fact-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif}
+.fact-value{font-size:.95rem;color:var(--text)}
+hr.divider{border:none;border-top:1px solid var(--border)}
+footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);font-family:'Helvetica Neue',sans-serif}
+/* LIGHTBOX */
+#lb{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.93);z-index:9999;align-items:center;justify-content:center}
+#lb.open{display:flex}
+#lb-close{position:fixed;top:1rem;right:1.5rem;color:#fff;font-size:2.5rem;cursor:pointer;z-index:10001;line-height:1;user-select:none}
+#lb-prev,#lb-next{color:#fff;font-size:4rem;cursor:pointer;padding:2rem;user-select:none;position:fixed;top:50%;transform:translateY(-50%)}
+#lb-prev{left:0}
+#lb-next{right:0}
+#lb-img{max-width:84vw;max-height:86vh;object-fit:contain}
+#lb-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-    <div class="nav-name">Maya Lian</div>
-    <ul class="nav-links">
-        <li><a href="#art">Art</a></li>
-        <li><a href="#engineering">Engineering</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
+  <div class="nav-name">Maya Lian</div>
+  <ul class="nav-links">
+    <li><a href="#art">Art</a></li>
+    <li><a href="#engineering">Engineering</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-    <div class="hero-inner">
-        <div class="hero-tag">Portfolio — 2024–2025</div>
-        <h1>Drawing, Building, and the Space Between</h1>
-        <p class="hero-sub">
-            I started as an artist who wanted to make things move.
-            I became an engineer who never stopped drawing.
-        </p>
-        <div class="hero-links">
-            <a href="#art" class="btn btn-filled">View Art</a>
-            <a href="#engineering" class="btn">Engineering Work</a>
-        </div>
+  <div class="hero-inner">
+    <div class="hero-tag">Portfolio — 2024–2025</div>
+    <h1>Drawing, Building, and the Space Between</h1>
+    <p class="hero-sub">I started as an artist who wanted to make things move. I became an engineer who never stopped drawing.</p>
+    <div class="hero-links">
+      <a href="#art" class="btn btn-filled">View Art</a>
+      <a href="#engineering" class="btn">Engineering Work</a>
     </div>
+  </div>
 </div>
 
 <hr class="divider">
 
-<!-- ART SECTION -->
+<!-- ART -->
 <section id="art">
-    <div class="section-label">Visual Work</div>
-    <h2>Art & Animation</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <div class="card-img">
-                <!-- Replace src with your actual image -->
-                <span>[ CG5 Concert Poster — Year 3 ]</span>
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Illustration · 2024</div>
-                <div class="card-title">CG5 Annual Concert Poster</div>
-                <div class="card-desc">Official concert poster, third consecutive year. 100+ hours. Original character design inspired by CG5's music and visual identity. Signed by CG5.</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img">
-                <span>[ Character Sheets ]</span>
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Character Design · 2023–2024</div>
-                <div class="card-title">Character Design Sheets</div>
-                <div class="card-desc">Original characters from personal animation projects and YouTube collaborations. Turnarounds, expression sheets, and design explorations.</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img">
-                <span>[ Animation Reel ]</span>
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Animation · 2022–2024</div>
-                <div class="card-title">Story-Driven Animations</div>
-                <div class="card-desc">Personal YouTube channel animations. Frame-by-frame digital animation focused on character emotion and narrative timing. 12,600 subscribers.</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img">
-                <span>[ YouTube Thumbnails ]</span>
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Visual Design · 2023</div>
-                <div class="card-title">YouTube Head Art Director</div>
-                <div class="card-desc">Sole visual designer for 10 months. Thumbnail design, original characters, and visual system for a channel that grew from 30K to 160K subscribers.</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img">
-                <span>[ Sketchbook ]</span>
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Sketchbook · Ongoing</div>
-                <div class="card-title">Sketchbook Pages</div>
-                <div class="card-desc">Working drawings, character studies, and late-night sketches. Where most of the thinking happens before anything becomes digital.</div>
-            </div>
-        </div>
-
+  <div class="section-label">Visual Work</div>
+  <h2>Art &amp; Animation</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img">[ CG5 Concert Poster — 2024 ]</div>
+      <div class="card-body">
+        <div class="card-tag">Illustration · 2022–2024</div>
+        <div class="card-title">CG5 Annual Concert Poster</div>
+        <div class="card-desc">Official concert poster, three consecutive years. 100+ hours each. Original character design. Signed by CG5.</div>
+      </div>
     </div>
+    <div class="card">
+      <div class="card-img">[ Character Design Sheets ]</div>
+      <div class="card-body">
+        <div class="card-tag">Character Design · 2023–2025</div>
+        <div class="card-title">Character Design Sheets</div>
+        <div class="card-desc">Original characters from personal animation projects and YouTube collaborations. Turnarounds, expression sheets, design explorations.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">[ Animation Reel ]</div>
+      <div class="card-body">
+        <div class="card-tag">Animation · 2022–2025</div>
+        <div class="card-title">Story-Driven Animations</div>
+        <div class="card-desc">Personal YouTube channel animations. Frame-by-frame digital animation focused on character emotion and narrative timing. 12,600 subscribers.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">[ YouTube Thumbnails ]</div>
+      <div class="card-body">
+        <div class="card-tag">Visual Design · 2023–2024</div>
+        <div class="card-title">YouTube Head Art Director</div>
+        <div class="card-desc">Sole visual designer for 10 months. Thumbnail design, original characters, visual system for a channel that grew from 30K to 160K subscribers.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">[ Sketchbook ]</div>
+      <div class="card-body">
+        <div class="card-tag">Sketchbook · Ongoing</div>
+        <div class="card-title">Sketchbook Pages</div>
+        <div class="card-desc">Working drawings, character studies, and late-night sketches. Where most of the thinking happens before anything becomes digital.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <hr class="divider">
 
-<!-- ENGINEERING SECTION -->
+<!-- ENGINEERING -->
 <section id="engineering">
-    <div class="section-label">Engineering Work</div>
-    <h2>Projects & Research</h2>
+  <div class="section-label">Engineering Work</div>
+  <h2>Projects &amp; Research</h2>
+  <div class="eng-list">
 
-    <div class="eng-list">
-
-        <div class="eng-item">
-            <div class="eng-org">NASA Ames Research Center · 2023–2024</div>
-            <div class="eng-title">Mars Rover Teleoperation Interface</div>
-            <div class="eng-desc">Designed the operator interface for Mars rover teleoperation — presenting complex sensor data clearly enough that a scientist can make high-stakes decisions under pressure. Also built Mars habitat 3D assets. Published: NTRS 20250007247.</div>
-        </div>
-
-        <div class="eng-item" style="grid-column: 1 / -1;">
-            <div class="eng-org">Santa Clara University · 2024–2025</div>
-            <div class="eng-title">Municipal Finance Analytics Platform</div>
-            <div class="eng-desc">Built a multi-city interactive financial analytics platform with SCU professor. Ten years of municipal budget data made explorable for city council members and policy leaders. Presented to Sunnyvale City Council.</div>
-            <div class="gallery-group" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 0)" src="sunnyvale-1.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 1">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 1)" src="sunnyvale-2.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 2">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 2)" src="sunnyvale-3.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 3">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 3)" src="sunnyvale-4.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 4">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 4)" src="sunnyvale-5.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 5">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 5)" src="sunnyvale-6.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 6">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 6)" src="sunnyvale-7.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 7">
-                <img class="clickable-img" data-group="sunnyvale" onclick="openLightbox('sunnyvale', 7)" src="sunnyvale-8.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Sunnyvale Dashboard 8">
-            </div>
-        </div>
-
-        <div class="eng-item">
-            <div class="eng-org">Personal Project · 2025</div>
-            <div class="eng-title">Rhythm Game</div>
-            <div class="eng-desc">Built from scratch in AP CS. Spent weeks on timing systems, audio feedback, and visual response until the game stopped feeling like code and started feeling like music. The problem that turned me into an engineer.</div>
-        </div>
-
-        <div class="eng-item">
-            <div class="eng-org">Pinewood School Robotics · 2023–2026</div>
-            <div class="eng-title">Robot Intake Mechanism</div>
-            <div class="eng-desc">Lead programmer. Designed and debugged the intake system, thinking first about how the driver would physically experience resistance before deciding how the code should respond. CalGames Finalist.</div>
-        </div>
-
-        <div class="eng-item" style="grid-column: 1 / -1;">
-            <div class="eng-org">Pinewood School — Honor Biology · 2025</div>
-            <div class="eng-title">3D Cell Model in Blender</div>
-            <div class="eng-desc">Built a fully interactive 3D cell model in Blender for Honor Biology — the first and only 3D digital cell model in Pinewood School's history. Every organelle modeled with accurate spatial relationships and rendered for presentation.</div>
-            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
-                <img data-group="cell" class="clickable-img" onclick="openLightbox('cell', 0)" src="cell-model1.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Cell Model 1">
-                <img data-group="cell" class="clickable-img" onclick="openLightbox('cell', 1)" src="cell-model2.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Cell Model 2">
-                <img data-group="cell" class="clickable-img" onclick="openLightbox('cell', 2)" src="cell-model3.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a; cursor:zoom-in;" alt="Cell Model 3">
-            </div>
-        </div>
-
+    <div class="eng-item">
+      <div class="eng-org">NASA Ames Research Center · 2023–2025</div>
+      <div class="eng-title">Mars Rover Teleoperation Interface</div>
+      <div class="eng-desc">Designed the operator interface for Mars rover teleoperation — presenting complex sensor data clearly enough that a scientist can make high-stakes decisions under pressure. Also built Mars habitat 3D assets. Published: NTRS 20250007247.</div>
     </div>
+
+    <div class="eng-item" style="grid-column:1/-1">
+      <div class="eng-org">Santa Clara University · 2024–2025</div>
+      <div class="eng-title">Municipal Finance Analytics Platform</div>
+      <div class="eng-desc">Built a multi-city interactive financial analytics platform with SCU professor. Ten years of municipal budget data made explorable for city council members and policy leaders. Presented to Sunnyvale City Council.</div>
+      <div class="img-grid-4">
+        <img class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale-1.jpg" alt="Sunnyvale Dashboard 1">
+        <img class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale-2.jpg" alt="Sunnyvale Dashboard 2">
+        <img class="thumb" data-group="sunnyvale" data-idx="2" src="sunnyvale-3.jpg" alt="Sunnyvale Dashboard 3">
+        <img class="thumb" data-group="sunnyvale" data-idx="3" src="sunnyvale-4.jpg" alt="Sunnyvale Dashboard 4">
+        <img class="thumb" data-group="sunnyvale" data-idx="4" src="sunnyvale-5.jpg" alt="Sunnyvale Dashboard 5">
+        <img class="thumb" data-group="sunnyvale" data-idx="5" src="sunnyvale-6.jpg" alt="Sunnyvale Dashboard 6">
+        <img class="thumb" data-group="sunnyvale" data-idx="6" src="sunnyvale-7.jpg" alt="Sunnyvale Dashboard 7">
+        <img class="thumb" data-group="sunnyvale" data-idx="7" src="sunnyvale-8.jpg" alt="Sunnyvale Dashboard 8">
+      </div>
+    </div>
+
+    <div class="eng-item">
+      <div class="eng-org">Personal Project · 2025</div>
+      <div class="eng-title">Rhythm Game</div>
+      <div class="eng-desc">Built from scratch in AP CS. Spent weeks on timing systems, audio feedback, and visual response until the game stopped feeling like code and started feeling like music. The problem that turned me into an engineer.</div>
+    </div>
+
+    <div class="eng-item">
+      <div class="eng-org">Pinewood School Robotics · 2025–2026</div>
+      <div class="eng-title">Robot Intake Mechanism</div>
+      <div class="eng-desc">Lead programmer. Designed and debugged the intake system, thinking first about how the driver would physically experience resistance before deciding how the code should respond. CalGames Finalist.</div>
+    </div>
+
+    <div class="eng-item" style="grid-column:1/-1">
+      <div class="eng-org">Pinewood School — Honor Biology · 2025</div>
+      <div class="eng-title">3D Cell Model in Blender</div>
+      <div class="eng-desc">Built a fully interactive 3D cell model in Blender for Honor Biology — the first and only 3D digital cell model in Pinewood School's history. Every organelle modeled with accurate spatial relationships and rendered for presentation.</div>
+      <div class="img-grid-3">
+        <img class="thumb" data-group="cell" data-idx="0" src="cell-model1.jpg" alt="Cell Model 1">
+        <img class="thumb" data-group="cell" data-idx="1" src="cell-model2.jpg" alt="Cell Model 2">
+        <img class="thumb" data-group="cell" data-idx="2" src="cell-model3.jpg" alt="Cell Model 3">
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <hr class="divider">
 
-<!-- ABOUT SECTION -->
+<!-- ABOUT -->
 <section id="about">
-    <div class="section-label">About</div>
-    <h2>Who I Am</h2>
-
-    <div class="about-grid">
-        <div class="about-text">
-            <p>I grew up drawing things I didn't fully understand yet — machinery, anatomy, systems that moved in ways I wanted to figure out. Drawing was how I processed the world before I had the vocabulary for what I was doing.</p>
-
-            <p>That habit eventually showed me its own limits. A drawing can show the surface of a system. It can't show how the system <strong>behaves</strong> when a person uses it under pressure. That gap is what pulled me into engineering.</p>
-
-            <p>Now I work at the intersection: visual thinking applied to systems that people depend on. The rover interface at NASA. The financial platform a city council member uses to understand his city. The rhythm game where the engineering problem wasn't the code — it was making the experience feel right.</p>
-
-            <p>I'm a competitive speaker, a robotics programmer, an animator, and a researcher. I've never entirely belonged to one category. I think that's the most honest thing I can say about myself.</p>
-        </div>
-
-        <div class="about-facts">
-            <div class="fact">
-                <div class="fact-label">Currently</div>
-                <div class="fact-value">Senior at Pinewood School, Los Altos Hills, CA</div>
-            </div>
-            <div class="fact">
-                <div class="fact-label">Research</div>
-                <div class="fact-value">NASA Ames (2 summers) · SCU Municipal Analytics · UMass ML</div>
-            </div>
-            <div class="fact">
-                <div class="fact-label">Speech & Debate</div>
-                <div class="fact-value">TOC & NIETOC National Qualifier · NSDA Academic All-American · 1057 pts</div>
-            </div>
-            <div class="fact">
-                <div class="fact-label">Publication</div>
-                <div class="fact-value">NTRS 20250007247</div>
-            </div>
-            <div class="fact">
-                <div class="fact-label">Interests</div>
-                <div class="fact-value">Human-computer interaction · Embedded systems · Animation · Civic technology</div>
-            </div>
-        </div>
+  <div class="section-label">About</div>
+  <h2>Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I grew up drawing things I didn't fully understand yet — machinery, anatomy, systems that moved in ways I wanted to figure out. Drawing was how I processed the world before I had the vocabulary for what I was doing.</p>
+      <p>That habit eventually showed me its own limits. A drawing can show the surface of a system. It can't show how the system <strong>behaves</strong> when a person uses it under pressure. That gap is what pulled me into engineering.</p>
+      <p>Now I work at the intersection: visual thinking applied to systems that people depend on. The rover interface at NASA. The financial platform a city council member uses to understand his city. The rhythm game where the engineering problem wasn't the code — it was making the experience feel right.</p>
+      <p>I'm a competitive speaker, a robotics programmer, an animator, and a researcher. I've never entirely belonged to one category. I think that's the most honest thing I can say about myself.</p>
     </div>
+    <div class="about-facts">
+      <div class="fact">
+        <div class="fact-label">Currently</div>
+        <div class="fact-value">Senior at Pinewood School, Los Altos Hills, CA</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Research</div>
+        <div class="fact-value">NASA Ames (2 summers) · SCU Municipal Analytics · UMass ML</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Speech &amp; Debate</div>
+        <div class="fact-value">TOC &amp; NIETOC National Qualifier · NSDA Academic All-American · 1057 pts</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Publication</div>
+        <div class="fact-value">NTRS 20250007247</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Interests</div>
+        <div class="fact-value">Human-computer interaction · Embedded systems · Animation · Civic technology</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-    Maya Lian · mayalian.github.io · 2025
-</footer>
-
+<footer>Maya Lian · mayalian.github.io · 2025</footer>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.93); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
-    <div onclick="closeLightbox()" style="position:absolute; top:1rem; right:1.5rem; color:#fff; font-size:2rem; cursor:pointer; line-height:1;">×</div>
-    <div style="display:flex; align-items:center; gap:1rem; max-width:95vw; max-height:90vh;" onclick="event.stopPropagation()">
-        <div id="lb-prev" onclick="lightboxPrev(event)" style="color:#fff; font-size:3rem; cursor:pointer; padding:1rem; flex-shrink:0; user-select:none;">&#8249;</div>
-        <img id="lightbox-img" src="" style="max-width:85vw; max-height:85vh; object-fit:contain;" onclick="event.stopPropagation()">
-        <div id="lb-next" onclick="lightboxNext(event)" style="color:#fff; font-size:3rem; cursor:pointer; padding:1rem; flex-shrink:0; user-select:none;">&#8250;</div>
-    </div>
-    <div id="lb-counter" style="color:#aaa; font-size:0.85rem; margin-top:0.75rem; font-family:sans-serif;"></div>
-</div>
-    <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">‹</span>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-    <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeImage(1)">›</span>
-    <div class="lightbox-counter" id="lightbox-counter"></div>
+<div id="lb" onclick="lbClose()">
+  <span id="lb-close" onclick="lbClose()">×</span>
+  <span id="lb-prev" onclick="lbMove(event,-1)">&#8249;</span>
+  <img id="lb-img" src="" onclick="event.stopPropagation()">
+  <span id="lb-next" onclick="lbMove(event,1)">&#8250;</span>
+  <div id="lb-counter"></div>
 </div>
 
 <script>
-var groups = {};
-var currentGroup = null;
-var currentIdx = 0;
+var LB = { group: [], idx: 0 };
 
-window.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[data-group]').forEach(function(img) {
-        var g = img.getAttribute('data-group');
-        if (!groups[g]) groups[g] = [];
-        groups[g].push(img.src);
-    });
+document.querySelectorAll('.thumb').forEach(function(img) {
+  img.addEventListener('click', function() {
+    var g = this.getAttribute('data-group');
+    var idx = parseInt(this.getAttribute('data-idx'));
+    LB.group = Array.from(document.querySelectorAll('[data-group="' + g + '"]'));
+    LB.idx = idx;
+    lbShow();
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
 });
 
-function openLightbox(groupId, index) {
-    currentGroup = groupId;
-    currentIdx = index;
-    updateLightbox();
-    document.getElementById('lightbox').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+function lbShow() {
+  document.getElementById('lb-img').src = LB.group[LB.idx].src;
+  document.getElementById('lb-counter').textContent = (LB.idx + 1) + ' / ' + LB.group.length;
+  document.getElementById('lb-prev').style.opacity = LB.idx > 0 ? '1' : '0.2';
+  document.getElementById('lb-next').style.opacity = LB.idx < LB.group.length - 1 ? '1' : '0.2';
 }
 
-function updateLightbox() {
-    var imgs = groups[currentGroup];
-    document.getElementById('lightbox-img').src = imgs[currentIdx];
-    document.getElementById('lb-counter').textContent = (currentIdx + 1) + ' / ' + imgs.length;
-    document.getElementById('lb-prev').style.opacity = currentIdx > 0 ? '1' : '0.3';
-    document.getElementById('lb-next').style.opacity = currentIdx < imgs.length - 1 ? '1' : '0.3';
+function lbMove(e, dir) {
+  e.stopPropagation();
+  var next = LB.idx + dir;
+  if (next >= 0 && next < LB.group.length) { LB.idx = next; lbShow(); }
 }
 
-function lightboxPrev(e) {
-    e.stopPropagation();
-    if (currentIdx > 0) { currentIdx--; updateLightbox(); }
-}
-
-function lightboxNext(e) {
-    e.stopPropagation();
-    if (currentGroup && currentIdx < groups[currentGroup].length - 1) { currentIdx++; updateLightbox(); }
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-    document.body.style.overflow = '';
+function lbClose() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', function(e) {
-    if (document.getElementById('lightbox').style.display !== 'flex') return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxPrev(e);
-    if (e.key === 'ArrowRight') lightboxNext(e);
-});
-</script>
-
-
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-close" onclick="closeLightbox()">×</div>
-    <div id="lb-prev" onclick="lightboxPrev(event)" style="position:absolute; left:1.5rem; top:50%; transform:translateY(-50%); color:#fff; font-size:2.5rem; cursor:pointer; user-select:none; padding:1rem; opacity:0.7;">&#8249;</div>
-    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
-    <div id="lb-next" onclick="lightboxNext(event)" style="position:absolute; right:1.5rem; top:50%; transform:translateY(-50%); color:#fff; font-size:2.5rem; cursor:pointer; user-select:none; padding:1rem; opacity:0.7;">&#8250;</div>
-</div>
-
-<script>
-var allImages = [];
-var currentIndex = 0;
-
-// Collect all clickable images on page load
-window.addEventListener('load', function() {
-    allImages = Array.from(document.querySelectorAll('.clickable-img'));
-});
-
-function openLightbox(src, alt) {
-    // Find index of clicked image
-    currentIndex = allImages.findIndex(img => img.src.includes(src.split('/').pop()));
-    if (currentIndex === -1) currentIndex = 0;
-    showImage(currentIndex);
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function showImage(index) {
-    var img = allImages[index];
-    document.getElementById('lightbox-img').src = img.src;
-    document.getElementById('lightbox-img').alt = img.alt;
-    // Show/hide arrows
-    document.getElementById('lb-prev').style.opacity = index > 0 ? '1' : '0.2';
-    document.getElementById('lb-next').style.opacity = index < allImages.length - 1 ? '1' : '0.2';
-}
-
-function lightboxPrev(e) {
-    e.stopPropagation();
-    if (currentIndex > 0) {
-        currentIndex--;
-        showImage(currentIndex);
-    }
-}
-
-function lightboxNext(e) {
-    e.stopPropagation();
-    if (currentIndex < allImages.length - 1) {
-        currentIndex++;
-        showImage(currentIndex);
-    }
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxPrev(e);
-    if (e.key === 'ArrowRight') lightboxNext(e);
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') lbMove(e, -1);
+  if (e.key === 'ArrowRight') lbMove(e, 1);
 });
 </script>
 </body>
