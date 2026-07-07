@@ -346,9 +346,17 @@ function openSingleImage(e, src) {
 function lbShow() {
   var item = LB.group[LB.idx];
   document.getElementById('lb-img').src = item.src || item.getAttribute('src');
-  document.getElementById('lb-counter').textContent = (LB.idx + 1) + ' / ' + LB.group.length;
-  document.getElementById('lb-prev').style.opacity = LB.idx > 0 ? '1' : '0.2';
-  document.getElementById('lb-next').style.opacity = LB.idx < LB.group.length - 1 ? '1' : '0.2';
+
+  var hasMultiple = LB.group.length > 1;
+  document.getElementById('lb-prev').style.display = hasMultiple ? 'block' : 'none';
+  document.getElementById('lb-next').style.display = hasMultiple ? 'block' : 'none';
+  document.getElementById('lb-counter').style.display = hasMultiple ? 'block' : 'none';
+
+  if (hasMultiple) {
+    document.getElementById('lb-counter').textContent = (LB.idx + 1) + ' / ' + LB.group.length;
+    document.getElementById('lb-prev').style.opacity = LB.idx > 0 ? '1' : '0.2';
+    document.getElementById('lb-next').style.opacity = LB.idx < LB.group.length - 1 ? '1' : '0.2';
+  }
 }
 
 function lbMove(e, dir) {
@@ -365,6 +373,8 @@ function lbClose() {
 document.addEventListener('keydown', function(e) {
   if (!document.getElementById('lb').classList.contains('open')) return;
   if (e.key === 'Escape') lbClose();
+
+  if (LB.group.length <= 1) return;
   if (e.key === 'ArrowLeft') lbMove(e, -1);
   if (e.key === 'ArrowRight') lbMove(e, 1);
 });
