@@ -381,6 +381,44 @@
         }
 
         .gallery-img:hover { opacity: 0.8; }
+
+        /* LIGHTBOX */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 92vw;
+            max-height: 92vh;
+            object-fit: contain;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: 'Helvetica Neue', sans-serif;
+            line-height: 1;
+            opacity: 0.7;
+        }
+        .lightbox-close:hover { opacity: 1; }
+        .clickable-img {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+        .clickable-img:hover { opacity: 0.85; }
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
@@ -507,14 +545,14 @@
             <div class="eng-title">Municipal Finance Analytics Platform</div>
             <div class="eng-desc">Built a multi-city interactive financial analytics platform with SCU professor. Ten years of municipal budget data made explorable for city council members and policy leaders. Presented to Sunnyvale City Council.</div>
             <div class="gallery-group" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
-                <img src="sunnyvale-1.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 1">
-                <img src="sunnyvale-2.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 2">
-                <img src="sunnyvale-3.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 3">
-                <img src="sunnyvale-4.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 4">
-                <img src="sunnyvale-5.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 5">
-                <img src="sunnyvale-6.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 6">
-                <img src="sunnyvale-7.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 7">
-                <img src="sunnyvale-8.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 8">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-1.jpg', 'Sunnyvale Dashboard 1')" src="sunnyvale-1.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 1">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-2.jpg', 'Sunnyvale Dashboard 2')" src="sunnyvale-2.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 2">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-3.jpg', 'Sunnyvale Dashboard 3')" src="sunnyvale-3.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 3">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-4.jpg', 'Sunnyvale Dashboard 4')" src="sunnyvale-4.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 4">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-5.jpg', 'Sunnyvale Dashboard 5')" src="sunnyvale-5.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 5">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-6.jpg', 'Sunnyvale Dashboard 6')" src="sunnyvale-6.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 6">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-7.jpg', 'Sunnyvale Dashboard 7')" src="sunnyvale-7.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 7">
+                <img class="clickable-img" onclick="openLightbox('sunnyvale-8.jpg', 'Sunnyvale Dashboard 8')" src="sunnyvale-8.jpg" class="gallery-img" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Sunnyvale Dashboard 8">
             </div>
         </div>
 
@@ -531,13 +569,13 @@
         </div>
 
         <div class="eng-item" style="grid-column: 1 / -1;">
-            <div class="eng-org">Pinewood School — Honor Biology · 2023</div>
+            <div class="eng-org">Pinewood School — Honor Biology · 2025</div>
             <div class="eng-title">3D Cell Model in Blender</div>
             <div class="eng-desc">Built a fully interactive 3D cell model in Blender for Honor Biology — the first and only 3D digital cell model in Pinewood School's history. Every organelle modeled with accurate spatial relationships and rendered for presentation.</div>
             <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.5rem;">
-                <img src="cell-model1.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 1">
-                <img src="cell-model2.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 2">
-                <img src="cell-model3.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 3">
+                <img class="clickable-img" onclick="openLightbox('cell-model1.jpg', 'Cell Model 1')" src="cell-model1.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 1">
+                <img class="clickable-img" onclick="openLightbox('cell-model2.jpg', 'Cell Model 2')" src="cell-model2.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 2">
+                <img class="clickable-img" onclick="openLightbox('cell-model3.jpg', 'Cell Model 3')" src="cell-model3.jpg" style="width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid #2a2a2a;" alt="Cell Model 3">
             </div>
         </div>
 
@@ -652,5 +690,27 @@
     });
 </script>
 
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">×</div>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src, alt) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-img').alt = alt;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+});
+</script>
 </body>
 </html>
