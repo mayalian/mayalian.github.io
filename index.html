@@ -65,7 +65,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 
 .nasa-preview{margin-top:1.5rem;border:1px solid var(--border);background:#111;overflow:hidden;cursor:zoom-in;transition:border-color .3s,opacity .2s}
 .nasa-preview:hover{border-color:var(--accent);opacity:.9}
-.nasa-preview img{width:100%;height:420px;object-fit:cover;object-position:center;display:block}
+.nasa-preview img{width:100%;height:360px;object-fit:cover;object-position:center;display:block}
 .nasa-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
 .small-btn{display:inline-block;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;background:transparent;cursor:pointer}
 .small-btn:hover{background:var(--accent);color:var(--bg)}
@@ -78,7 +78,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 .question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
 .card-question{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.6rem 0 .7rem;font-family:'Helvetica Neue',sans-serif;line-height:1.5}
 
-@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -119,7 +119,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
       <div class="eng-org">NASA Ames Research Center · 2025–2026</div>
       <div class="eng-title">Mars City Visualization &amp; Habitat Design</div>
       <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What would it take to design a believable city on Mars?</div>
-      <div class="eng-desc">Collaborated with NASA Ames on the Mars City project, creating Blender-based 3D environments and infrastructure visualizations for future human habitats. Contributed to the Subsurface Habitat (&quot;The Cave Home&quot;) and Mining Operations sections. Published through NASA NTRS (20250007247).</div>
+      <div class="eng-desc">Collaborated with NASA Ames on the Mars City project, creating Blender-based 3D environments and infrastructure assets for NASA's Mars City project. Contributed to the Subsurface Habitat (&quot;The Cave Home&quot;) and Mining Operations sections. Published through NASA NTRS (20250007247).</div>
       <div class="eng-desc" style="margin-top:.75rem;color:var(--text);"><strong>Maya’s contributions:</strong> Subsurface Habitat “The Cave Home” · Mining Operations · Blender-based Mars infrastructure visualization.</div>
       <div class="nasa-actions">
         <a href="#" class="small-btn" onclick="openSingleVideo(event,'videos/Mars%20Project%20compressed-3.mp4','videos/NASA1.jpg')">Watch Presentation</a>
@@ -140,7 +140,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <img class="thumb" data-group="nasa" data-idx="8" src="videos/NASA10.jpg" alt="NASA Project 10">
         <img class="thumb" data-group="nasa" data-idx="9" src="videos/NASA11.jpg" alt="NASA Project 11">
         <img class="thumb" data-group="nasa" data-idx="10" src="videos/NASA12.jpg" alt="NASA Project 12">
-        <img class="thumb" data-group="nasa" data-idx="11" src="videos/NASA13.jpg" alt="NASA Project Credits">
+        <img class="thumb" data-group="nasa" data-idx="11" src="videos/NASA13.jpg" alt="NASA Project Credits" data-caption="Official Project Credits — Maya Lian: Subsurface Habitat “The Cave Home” and Mining Operations">
       </div>
     </div>
 
@@ -409,8 +409,15 @@ function lbShow() {
     video.style.display = 'none';
     img.style.display = 'block';
     img.src = item.src || item.getAttribute('src');
-    caption.style.display = 'none';
-    caption.textContent = '';
+
+    var imageCaption = item.caption || (item.getAttribute ? item.getAttribute('data-caption') : '');
+    if (imageCaption) {
+      caption.textContent = imageCaption;
+      caption.style.display = 'block';
+    } else {
+      caption.style.display = 'none';
+      caption.textContent = '';
+    }
   }
 
   var hasMultiple = LB.group.length > 1;
