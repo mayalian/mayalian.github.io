@@ -99,7 +99,42 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   margin-bottom:.75rem;
 }
 
-@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}}
+.cg5-feature{
+  grid-column:1/-1;
+}
+.cg5-feature .card-body{
+  padding:2rem 2rem 1.25rem;
+}
+.cg5-feature .card-title{
+  font-size:1.4rem;
+}
+.cg5-poster-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  padding:0 2rem 2rem;
+}
+.cg5-poster{
+  background:#111;
+}
+.cg5-year{
+  color:var(--accent);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:.45rem;
+}
+.cg5-poster img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+  display:block;
+}
+
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}}
 </style>
 </head>
 <body>
@@ -264,17 +299,26 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <div class="section-label">Visual Work</div>
   <h2>Art &amp; Animation</h2>
   <div class="grid">
-    <div class="card">
-      <div class="card-img cg5-gallery">
-        <img class="thumb" data-group="cg5" data-idx="0" src="images/CG5-2024.jpg" style="width:100%;height:100%;object-fit:contain;background:#111;">
-        <img class="thumb" data-group="cg5" data-idx="1" src="images/CG5-2025.jpg" style="width:100%;height:100%;object-fit:contain;background:#111;">
-        <img class="thumb" data-group="cg5" data-idx="2" src="CG5-Poster-2026.jpeg" style="width:100%;height:100%;object-fit:contain;background:#111;">
-      </div>
+    <div class="card cg5-feature">
       <div class="card-body">
-        <div class="card-tag">Illustration · 2026</div>
+        <div class="card-tag">Illustration · 2024–2026</div>
         <div class="card-title">CG5 Annual Concert Poster</div>
         <div class="card-question">Question: How do you make a concert poster communicate emotion before someone reads a word?</div>
         <div class="card-desc"><span class="cg5-highlight">Official CG5 concert poster artist for three consecutive years.</span> Led a team of artists and created approximately 80% of each poster, including the overall composition, character design, and final rendering. Each poster took more than 100 hours to complete. Personally signed by CG5.</div>
+      </div>
+      <div class="cg5-poster-row">
+        <div class="cg5-poster">
+          <div class="cg5-year">2024</div>
+          <img class="thumb" data-group="cg5" data-idx="0" src="images/CG5-2024.jpg" alt="CG5 Concert Poster 2024">
+        </div>
+        <div class="cg5-poster">
+          <div class="cg5-year">2025</div>
+          <img class="thumb" data-group="cg5" data-idx="1" src="images/CG5-2025.jpg" alt="CG5 Concert Poster 2025">
+        </div>
+        <div class="cg5-poster">
+          <div class="cg5-year">2026</div>
+          <img class="thumb" data-group="cg5" data-idx="2" src="CG5-Poster-2026.jpeg" alt="CG5 Concert Poster 2026">
+        </div>
       </div>
     </div>
     <div class="card" style="grid-column:1/-1;">
