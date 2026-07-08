@@ -72,12 +72,91 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 #lb-video{display:none;max-width:84vw;max-height:86vh;background:#000}
 #lb-caption{position:fixed;bottom:3rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif;text-align:center;max-width:80vw;line-height:1.4}
 
+
 .question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
 .question-card{border:1px solid var(--border);padding:1.4rem;background:var(--surface);color:var(--text);font-size:1.05rem;line-height:1.5}
 .question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
 .card-question{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.6rem 0 .7rem;font-family:'Helvetica Neue',sans-serif;line-height:1.5}
 
-@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem} .eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
+.cg5-gallery{
+  padding:0;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:#111;
+}
+.cg5-gallery img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+}
+.cg5-highlight{
+  display:block;
+  color:var(--text);
+  margin-bottom:.75rem;
+}
+
+.cg5-feature{
+  grid-column:1/-1;
+}
+.cg5-feature .card-body{
+  padding:2rem 2rem 1.25rem;
+}
+.cg5-feature .card-title{
+  font-size:1.4rem;
+}
+.cg5-poster-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  padding:0 2rem 2rem;
+}
+.cg5-poster{
+  background:#111;
+}
+.cg5-year{
+  color:var(--accent);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:.45rem;
+}
+.cg5-poster img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+  display:block;
+}
+
+.rhythm-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.75rem;
+  margin-top:1.5rem;
+}
+.rhythm-grid img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+  display:block;
+}
+
+.rhythm-actions{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+  margin-top:1rem;
+}
+
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.rhythm-grid{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
 </style>
 </head>
 <body>
@@ -115,13 +194,12 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <h2>Projects &amp; Research</h2>
   <div class="eng-list">
 
-    <!-- NASA PROJECT -->
     <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">NASA Ames Research Center · 2025–2026</div>
       <div class="eng-title">Mars City Visualization &amp; Habitat Design</div>
       <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What would it take to design a believable city on Mars?</div>
       <div class="eng-desc">Collaborated with NASA Ames on the Mars City project, creating Blender-based 3D environments and infrastructure assets for future human habitats. Contributed to the Subsurface Habitat (&quot;The Cave Home&quot;) and Mining Operations sections. Published through NASA NTRS (20250007247).</div>
-      <div class="eng-desc" style="margin-top:.75rem;color:var(--text);"><strong>My contributions:</strong> Subsurface Habitat: The Cave Home · Mining Operations · Blender-based Mars infrastructure visualization.</div>
+      <div class="eng-desc" style="margin-top:.75rem;color:var(--text);"><strong>My contributions:</strong> Subsurface Habitat “The Cave Home” · Mining Operations · Blender-based Mars infrastructure visualization.</div>
       <div class="nasa-actions">
         <a href="#" class="small-btn" onclick="openSingleVideo(event,'videos/Mars%20Project%20compressed-3.mp4','videos/NASA1.jpg')">Watch Presentation</a>
         <a href="https://ntrs.nasa.gov/citations/20250007247" target="_blank" class="small-btn">NASA NTRS</a>
@@ -130,7 +208,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <img src="videos/NASA1.jpg" alt="NASA Mars Project Preview">
       </div>
       <div class="img-grid-4">
-        <img class="thumb" data-group="nasa" data-idx="0" src="videos/NASA2.jpg" alt="NASA Project 2">
+                <img class="thumb" data-group="nasa" data-idx="0" src="videos/NASA2.jpg" alt="NASA Project 2">
         <img class="thumb" data-group="nasa" data-idx="1" src="videos/NASA3.jpg" alt="NASA Project 3">
         <img class="thumb" data-group="nasa" data-idx="2" src="videos/NASA4.jpg" alt="NASA Project 4">
         <img class="thumb" data-group="nasa" data-idx="3" src="videos/NASA5.jpg" alt="NASA Project 5">
@@ -141,11 +219,10 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <img class="thumb" data-group="nasa" data-idx="8" src="videos/NASA10.jpg" alt="NASA Project 10">
         <img class="thumb" data-group="nasa" data-idx="9" src="videos/NASA11.jpg" alt="NASA Project 11">
         <img class="thumb" data-group="nasa" data-idx="10" src="videos/NASA12.jpg" alt="NASA Project 12">
-        <img class="thumb" data-group="nasa" data-idx="11" src="videos/NASA13.jpg" alt="NASA Project Credits" data-caption="Official Project Credits ,  Maya Lian: Subsurface Habitat: The Cave Home and Mining Operations">
+        <img class="thumb" data-group="nasa" data-idx="11" src="videos/NASA13.jpg" alt="NASA Project Credits" data-caption="Official Project Credits ,  Maya Lian: Subsurface Habitat “The Cave Home” and Mining Operations">
       </div>
     </div>
 
-    <!-- SCU INTERACTIVE ANALYTICS -->
     <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">Santa Clara University · 2026</div>
       <div class="eng-title">Interactive Municipal Finance Analytics</div>
@@ -155,7 +232,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div>
           <div style="font-size:.82rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#aaa;margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Before ,  City of Sunnyvale ACFR (Original Government Reports)</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-            <!-- [NOTE: You may want to rename these two if you have custom names for the original reports] -->
             <img class="thumb" data-group="before" data-idx="0" src="images/sunnyvale1.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid #444;cursor:zoom-in;filter:brightness(0.9);" alt="Original ACFR Statement of Net Position">
             <img class="thumb" data-group="before" data-idx="1" src="images/sunnyvale2.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid #444;cursor:zoom-in;filter:brightness(0.9);" alt="Original ACFR Changes in Net Position">
           </div>
@@ -164,8 +240,8 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div>
           <div style="font-size:.82rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">After ,  My Interactive Analytics Platform</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-            <img class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale1.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;" alt="Dashboard 1">
-            <img class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale2.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;" alt="Dashboard 2">
+            <img class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale-1.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;" alt="Dashboard 1">
+            <img class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale-2.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;" alt="Dashboard 2">
           </div>
           <div style="font-size:.8rem;color:#888;margin-top:.5rem;font-style:italic;">Ten years of data made explorable in seconds</div>
         </div>
@@ -176,35 +252,34 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div style="font-size:.75rem;color:#666;margin-top:.3rem;font-family:'Helvetica Neue',sans-serif;">Comment from a Sunnyvale City Council member after the project presentation</div>
       </div>
       <div class="eng-desc">Built an interactive analytics platform with a Santa Clara University professor that transformed ten years of municipal financial reports into searchable dashboards. By comparing multiple Santa Clara County cities, council members could explore regional financial trends in seconds instead of reading hundreds of pages of annual reports. Presented to the Sunnyvale City Council.</div>
-      
-      <!-- [NOTE: Remember to swap these 'sunnyvaleX.png' placeolders to your actual filenames if they are named differently!] -->
       <div class="img-grid-4">
-        <img class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale1.png" alt="Sunnyvale Dashboard 1">
-        <img class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale2.png" alt="Sunnyvale Dashboard 2">
-        <img class="thumb" data-group="sunnyvale" data-idx="2" src="sunnyvale3.png" alt="Sunnyvale Dashboard 3">
-        <img class="thumb" data-group="sunnyvale" data-idx="3" src="sunnyvale4.png" alt="Sunnyvale Dashboard 4">
-        <img class="thumb" data-group="sunnyvale" data-idx="4" src="sunnyvale5.png" alt="Sunnyvale Dashboard 5">
-        <img class="thumb" data-group="sunnyvale" data-idx="5" src="sunnyvale6.png" alt="Sunnyvale Dashboard 6">
-        <img class="thumb" data-group="sunnyvale" data-idx="6" src="sunnyvale7.png" alt="Sunnyvale Dashboard 7">
-        <img class="thumb" data-group="sunnyvale" data-idx="7" src="sunnyvale8.png" alt="Sunnyvale Dashboard 8">
+        <img class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale-1.jpg" alt="Sunnyvale Dashboard 1">
+        <img class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale-2.jpg" alt="Sunnyvale Dashboard 2">
+        <img class="thumb" data-group="sunnyvale" data-idx="2" src="sunnyvale-3.jpg" alt="Sunnyvale Dashboard 3">
+        <img class="thumb" data-group="sunnyvale" data-idx="3" src="sunnyvale-4.jpg" alt="Sunnyvale Dashboard 4">
+        <img class="thumb" data-group="sunnyvale" data-idx="4" src="sunnyvale-5.jpg" alt="Sunnyvale Dashboard 5">
+        <img class="thumb" data-group="sunnyvale" data-idx="5" src="sunnyvale-6.jpg" alt="Sunnyvale Dashboard 6">
+        <img class="thumb" data-group="sunnyvale" data-idx="6" src="sunnyvale-7.jpg" alt="Sunnyvale Dashboard 7">
+        <img class="thumb" data-group="sunnyvale" data-idx="7" src="sunnyvale-8.jpg" alt="Sunnyvale Dashboard 8">
       </div>
     </div>
 
-    <!-- ORIGINAL RHYTHM GAME (UPDATED FILENAMES) -->
     <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">Personal Project · 2025</div>
       <div class="eng-title">Original Rhythm Game</div>
-      <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: Why do 50 milliseconds of delay matter so much when you're trying to make a game feel fair?</div>
-      <div class="eng-desc">Built a four-lane rhythm game from scratch, combining programming, digital art, UI design, scoring logic, and real-time player feedback. Designed the instruction screen, gameplay interface, timing system, hit accuracy, combo tracking, and final results screen so the game could teach itself through play.</div>
+      <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What makes a rhythm game feel fair instead of mechanical?</div>
+      <div class="eng-desc">Built a four-lane rhythm game from scratch, combining programming, digital art, UI design, scoring logic, and real-time player feedback. Designed the instruction screen, gameplay interface, custom arrow assets, timing windows, hit accuracy, combo tracking, and final results screen so the game could teach itself through play.</div>
+      <div class="rhythm-actions">
+        <a href="#" class="small-btn" onclick="openSingleVideo(event,'videos/rthym%20game.mp4','images/rhythm2.png','Original Rhythm Game · Live gameplay with music and real-time feedback')">Watch Gameplay</a>
+      </div>
       <div class="img-grid-4">
-        <img class="thumb" data-group="rhythm" data-idx="0" src="rhythm1.png" alt="Instruction Screen" data-caption="Instruction Screen: Clear, asset-driven user onboarding explaining the 4-track mechanism and S-F-J-K controls.">
-        <img class="thumb" data-group="rhythm" data-idx="1" src="rhythm2.png" alt="Gameplay UI - Perfect Hit" data-caption="Gameplay UI: Real-time scoring feedback, combo count tracking, and precision hit detection.">
-        <img class="thumb" data-group="rhythm" data-idx="2" src="rhythm3.png" alt="Gameplay UI - Note Flow" data-caption="Gameplay UI: Designed custom vector arrows and lane feedback layers to enhance horizontal readability during dense note patterns.">
-        <img class="thumb" data-group="rhythm" data-idx="3" src="rhythm4.png" alt="Song Complete Results Screen" data-caption="Final Results Screen: Performance metrics breakdown tracking accuracy percentages, peak combo caps, and letter grade evaluations.">
+        <img class="thumb" data-group="rhythm" data-idx="0" src="images/rhythm1.png" alt="Instruction Screen" data-caption="Instruction Screen. Clear, asset-driven user onboarding explaining the four-track mechanism and S-F-J-K controls.">
+        <img class="thumb" data-group="rhythm" data-idx="1" src="images/rhythm2.png" alt="Gameplay UI Perfect Hit" data-caption="Gameplay UI. Real-time scoring feedback, combo count tracking, and precision hit detection.">
+        <img class="thumb" data-group="rhythm" data-idx="2" src="images/rhythm3.png" alt="Gameplay UI Note Flow" data-caption="Gameplay UI. Custom vector arrows and lane feedback layers designed to preserve readability during dense note patterns.">
+        <img class="thumb" data-group="rhythm" data-idx="3" src="images/rhythm4.png" alt="Song Complete Results Screen" data-caption="Final Results Screen. Performance metrics breakdown tracking accuracy percentage, peak combo, hit counts, and letter grade evaluation.">
       </div>
     </div>
 
-    <!-- ROBOTICS -->
     <div class="eng-item">
       <div class="eng-org">Pinewood School Robotics · 2025–2026</div>
       <div class="eng-title">Robot Intake Mechanism</div>
@@ -212,7 +287,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
       <div class="eng-desc">Lead programmer. Designed and debugged the intake system, thinking first about how the driver would physically experience resistance before deciding how the code should respond. CalGames Finalist.</div>
     </div>
 
-    <!-- BIOLOGY CELL MODEL -->
     <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">Pinewood School ,  Honor Biology · 2025</div>
       <div class="eng-title">3D Cell Model in Blender</div>
@@ -257,33 +331,28 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <div class="section-label">Visual Work</div>
   <h2>Art &amp; Animation</h2>
   <div class="grid">
-
-    <!-- CG5 POSTER (UPDATED FILENAMES) -->
-    <div class="card" style="grid-column:1/-1;">
-      <div class="card-body" style="padding-bottom:1rem;">
+    <div class="card cg5-feature">
+      <div class="card-body">
         <div class="card-tag">Illustration · 2024–2026</div>
         <div class="card-title">CG5 Annual Concert Poster</div>
         <div class="card-question">Question: How do you make a concert poster communicate emotion before someone reads a word?</div>
-        <div class="card-desc"><strong>Official CG5 concert poster artist for three consecutive years.</strong></div>
-        <div class="card-desc" style="margin-top:.5rem;">Led a team of artists and created approximately 80% of each poster, including the overall composition, character design, and final rendering. Each poster took more than 100 hours to complete. Personally signed by CG5.</div>
+        <div class="card-desc"><span class="cg5-highlight">Official CG5 concert poster artist for three consecutive years.</span> Led a team of artists and created approximately 80% of each poster, including the overall composition, character design, and final rendering. Each poster took more than 100 hours to complete. Personally signed by CG5.</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;padding:0 1.5rem 1.5rem;align-items:end;">
-        <div>
-          <div style="font-size:.8rem;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif;text-align:center;">2024</div>
-          <img class="thumb" data-group="cg5" data-idx="0" src="CG5-2024.jpg" alt="CG5 2024 Concert Poster" data-caption="CG5 2024 Concert Poster: Focused on massive character nesting and character alignment density.">
+      <div class="cg5-poster-row">
+        <div class="cg5-poster">
+          <div class="cg5-year">2024</div>
+          <img class="thumb" data-group="cg5" data-idx="0" src="images/CG5-2024.jpg" alt="CG5 Concert Poster 2024" data-caption="CG5 Concert Poster 2024. Official concert poster artwork, with original character composition, lighting, and final rendering.">
         </div>
-        <div>
-          <div style="font-size:.8rem;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif;text-align:center;">2025</div>
-          <img class="thumb" data-group="cg5" data-idx="1" src="CG5-2025.jpg" alt="CG5 2025 Concert Poster" data-caption="CG5 2025 Concert Poster: Experimented with dramatic volumetric backlighting and atmospheric red mist scaling.">
+        <div class="cg5-poster">
+          <div class="cg5-year">2025</div>
+          <img class="thumb" data-group="cg5" data-idx="1" src="images/CG5-2025.jpg" alt="CG5 Concert Poster 2025" data-caption="CG5 Concert Poster 2025. Official concert poster artwork, developed as part of a multi-artist team led by Maya.">
         </div>
-        <div>
-          <div style="font-size:.8rem;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif;text-align:center;">2026</div>
-          <img class="thumb" data-group="cg5" data-idx="2" src="CG5-2026.jpg" alt="CG5 2026 Concert Poster" data-caption="CG5 2026 Concert Poster: Implemented a split-screen high-contrast color theory and central neon vector framing.">
+        <div class="cg5-poster">
+          <div class="cg5-year">2026</div>
+          <img class="thumb" data-group="cg5" data-idx="2" src="CG5-Poster-2026.jpeg" alt="CG5 Concert Poster 2026" data-caption="CG5 Concert Poster 2026. Official concert poster artwork, continuing a three-year visual identity across CG5 concerts.">
         </div>
       </div>
     </div>
-
-    <!-- 20 YEARS REUNION -->
     <div class="card" style="grid-column:1/-1;">
       <div class="card-body" style="padding-bottom:1rem;">
         <div class="card-tag">Sequential Art · 2025</div>
@@ -291,14 +360,12 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div class="card-question">Question: How much emotion can exist between two silent frames?</div>
         <div class="card-desc">Original story: two characters who were close friends 20 years ago, separated by a misunderstanding, reunite two decades later. Told in sequential panels combining loose sketches and finished illustration.</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;padding:0 1.5rem 1.5rem;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;padding:0 1.5rem 1.5rem;">
         <img class="thumb" data-group="reunion" data-idx="0" src="20years-reunion-1.jpg" alt="20 Years Reunion 1">
         <img class="thumb" data-group="reunion" data-idx="1" src="20-years-reunion-2.jpg" alt="20 Years Reunion 2">
         <img class="thumb" data-group="reunion" data-idx="2" src="20years-reunion-3.jpg" alt="20 Years Reunion 3">
       </div>
     </div>
-
-    <!-- THE WEIGHT OF YOUR SINS -->
     <div class="card">
       <div class="card-img" style="padding:0;overflow:hidden;">
         <img class="thumb" data-group="eagle" data-idx="0" src="eagle-apush.jpg" style="width:100%;height:100%;object-fit:contain;background:#111;">
@@ -310,8 +377,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div class="card-desc">Created for APUSH to argue that "being American" means acknowledging the sacrifices that shaped the nation. The headdress, chains, and burnt pages symbolize indigenous and African suffering under colonial systems; the ascending light represents religious justification used by colonists; the bald eagle above depicts present-day American power. The image ties contemporary America directly to its history.</div>
       </div>
     </div>
-
-    <!-- ANIMATION REEL -->
     <div class="card">
       <div class="card-img">[ Animation Reel ]</div>
       <div class="card-body">
@@ -321,8 +386,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div class="card-desc">Personal YouTube channel animations. Frame-by-frame digital animation focused on character emotion and narrative timing. 12,600 subscribers.</div>
       </div>
     </div>
-
-    <!-- YOUTUBE THUMBNAILS -->
     <div class="card">
       <div class="card-img">[ YouTube Thumbnails ]</div>
       <div class="card-body">
@@ -332,8 +395,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div class="card-desc">Sole visual designer for 10 months. Built thumbnail systems, original characters, and visual identity for a channel that grew from 30K to 160K subscribers. Every thumbnail became an experiment in how people notice, interpret, and choose what to watch.</div>
       </div>
     </div>
-
-    <!-- IDEAS BECOMING REALITY -->
     <div class="card" style="grid-column:1/-1;">
       <div class="card-body" style="padding-bottom:1rem;">
         <div class="card-tag">Process · Visual Thinking · Ongoing</div>
@@ -353,6 +414,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   </div>
 </section>
 
+
 <hr class="divider">
 
 <!-- QUESTIONS -->
@@ -362,10 +424,10 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <div class="question-grid">
     <div class="question-card"><span>01</span>Why do some interfaces feel trustworthy while others create hesitation?</div>
     <div class="question-card"><span>02</span>How much information should a person see before a system becomes harder to use?</div>
-    <div class="question-card"><span>03</span>Why do 50 milliseconds of delay matter so much when you're trying to make a game feel fair?</div>
+    <div class="question-card"><span>03</span>Why can 50 milliseconds change whether a game feels fair?</div>
     <div class="question-card"><span>04</span>How do city leaders explore data they did not know they needed?</div>
     <div class="question-card"><span>05</span>When does a drawing stop being an image and start becoming a system?</div>
-    <div class="question-card"><span>06</span>Can we actually build systems that are as intuitive as a good drawing?</div>
+    <div class="question-card"><span>06</span>Can engineering make understanding easier?</div>
   </div>
 </section>
 
@@ -434,6 +496,7 @@ document.querySelectorAll('.thumb').forEach(function(img) {
   });
 });
 
+
 function openSingleImage(e, src) {
   e.preventDefault();
   LB.group = [{ type: 'image', src: src }];
@@ -443,9 +506,9 @@ function openSingleImage(e, src) {
   document.body.style.overflow = 'hidden';
 }
 
-function openSingleVideo(e, src, poster) {
+function openSingleVideo(e, src, poster, captionText) {
   e.preventDefault();
-  LB.group = [{ type: 'video', src: src, poster: poster || '', caption: 'NASA Ames Research Center · Mars City Project Demonstration · NTRS 20250007247' }];
+  LB.group = [{ type: 'video', src: src, poster: poster || '', caption: captionText || 'NASA Ames Research Center · Mars City Project Demonstration · NTRS 20250007247' }];
   LB.idx = 0;
   lbShow();
   document.getElementById('lb').classList.add('open');
