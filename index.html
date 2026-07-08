@@ -7,7 +7,7 @@
 <title>Maya Lian ,  Portfolio</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0f0f0f;--surface:#1a1a1a;--accent:#c8a87a;--text:#e8e8e8;--muted:#888;--border:#2a2a2a}
+:root{--bg:#0f0f0f;--surface:#1a1a1a;--accent:#c8a87a;--text:#eeeeee;--muted:#a8a8a8;--soft:#9a9a9a;--border:#2a2a2a}
 body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.7}
 nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(15,15,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100}
 .nav-name{font-size:1rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase}
@@ -18,7 +18,7 @@ nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify
 .hero-inner{max-width:700px}
 .hero-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-family:'Helvetica Neue',sans-serif}
 h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:normal;line-height:1.15;margin-bottom:1.5rem}
-.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-style:italic}
+.hero-sub{font-size:1.12rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-style:italic;line-height:1.7}
 .hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn{padding:.75rem 2rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;font-family:'Helvetica Neue',sans-serif}
 .btn:hover{background:var(--accent);color:var(--bg)}
@@ -34,24 +34,24 @@ h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:normal;margin-bottom:3rem}
 .card-body{padding:1.5rem}
 .card-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
 .card-title{font-size:1.1rem;margin-bottom:.5rem}
-.card-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+.card-desc{font-size:.92rem;color:var(--muted);line-height:1.72}
 .eng-list{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .eng-item{border:1px solid var(--border);padding:2rem;transition:border-color .3s}
 .eng-item:hover{border-color:var(--accent)}
 .eng-org{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
 .eng-title{font-size:1.15rem;margin-bottom:.75rem}
-.eng-desc{font-size:.9rem;color:var(--muted);line-height:1.6}
+.eng-desc{font-size:1rem;color:var(--muted);line-height:1.72}
 .img-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.5rem}
 .img-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
 .thumb{width:100%;aspect-ratio:auto;height:auto;object-fit:contain;border:1px solid rgba(200,168,122,.28);cursor:zoom-in;transition:opacity .2s,box-shadow .2s;background:#111;display:block;box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .thumb:hover{opacity:.82}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.about-text p{color:var(--muted);margin-bottom:1.2rem;font-size:1rem}
+.about-text p{color:var(--muted);margin-bottom:1.35rem;font-size:1.04rem;line-height:1.78}
 .about-text p strong{color:var(--text)}
 .about-facts{border-left:1px solid var(--border);padding-left:2.5rem}
 .fact{margin-bottom:2rem}
 .fact-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif}
-.fact-value{font-size:.95rem;color:var(--text)}
+.fact-value{font-size:.98rem;color:var(--text);line-height:1.55}
 hr.divider{border:none;border-top:1px solid var(--border)}
 footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);font-family:'Helvetica Neue',sans-serif}
 /* LIGHTBOX */
@@ -62,7 +62,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 #lb-prev{left:0}
 #lb-next{right:0}
 #lb-img{max-width:84vw;max-height:86vh;object-fit:contain}
-#lb-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif}
+#lb-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#c0c0c0;font-size:.85rem;font-family:sans-serif}
 
 .nasa-preview{margin-top:1.5rem;border:1px solid var(--border);background:#111;overflow:hidden;cursor:zoom-in;transition:border-color .3s,opacity .2s}
 .nasa-preview:hover{border-color:var(--accent);opacity:.9}
@@ -71,11 +71,11 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 .small-btn{display:inline-block;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;background:transparent;cursor:pointer}
 .small-btn:hover{background:var(--accent);color:var(--bg)}
 #lb-video{display:none;max-width:84vw;max-height:86vh;background:#000}
-#lb-caption{position:fixed;bottom:3rem;left:50%;transform:translateX(-50%);color:#aaa;font-size:.85rem;font-family:sans-serif;text-align:center;max-width:80vw;line-height:1.4}
+#lb-caption{position:fixed;bottom:3rem;left:50%;transform:translateX(-50%);color:#c8c8c8;font-size:.9rem;font-family:sans-serif;text-align:center;max-width:80vw;line-height:1.5}
 
 
 .question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
-.question-card{border:1px solid var(--border);padding:1.4rem;background:var(--surface);color:var(--text);font-size:1.05rem;line-height:1.5}
+.question-card{border:1px solid var(--border);padding:1.4rem;background:var(--surface);color:var(--text);font-size:1.06rem;line-height:1.62}
 .question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
 .card-question{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.6rem 0 .7rem;font-family:'Helvetica Neue',sans-serif;line-height:1.5}
 
@@ -173,9 +173,10 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   text-align:center;
 }
 .rhythm-note{
-  margin-top:.5rem;
-  color:#777;
-  font-size:.78rem;
+  margin-top:.65rem;
+  color:#b8b8b8;
+  font-size:.9rem;
+  line-height:1.55;
   font-style:italic;
 }
 
@@ -253,12 +254,12 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: How can city leaders understand ten years of financial data in minutes?</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0;">
 <div>
-<div style="font-size:.82rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#aaa;margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Before ,  City of Sunnyvale ACFR (Original Government Reports)</div>
+<div style="font-size:.82rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#c0c0c0;margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Before ,  City of Sunnyvale ACFR (Original Government Reports)</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
 <img alt="Original ACFR Statement of Net Position" class="thumb" data-group="before" data-idx="0" src="images/sunnyvale1.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid #444;cursor:zoom-in;filter:brightness(0.9);"/>
 <img alt="Original ACFR Changes in Net Position" class="thumb" data-group="before" data-idx="1" src="images/sunnyvale2.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid #444;cursor:zoom-in;filter:brightness(0.9);"/>
 </div>
-<div style="font-size:.8rem;color:#666;margin-top:.5rem;font-style:italic;">Dense financial reports requiring specialized expertise to interpret</div>
+<div style="font-size:.8rem;color:#9a9a9a;margin-top:.5rem;font-style:italic;">Dense financial reports requiring specialized expertise to interpret</div>
 </div>
 <div>
 <div style="font-size:.82rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">After ,  My Interactive Analytics Platform</div>
@@ -266,12 +267,12 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <img alt="Dashboard 1" class="thumb" data-group="sunnyvale" data-idx="0" src="sunnyvale-1.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;"/>
 <img alt="Dashboard 2" class="thumb" data-group="sunnyvale" data-idx="1" src="sunnyvale-2.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);cursor:zoom-in;"/>
 </div>
-<div style="font-size:.8rem;color:#888;margin-top:.5rem;font-style:italic;">Ten years of data made explorable in seconds</div>
+<div style="font-size:.8rem;color:#a8a8a8;margin-top:.5rem;font-style:italic;">Ten years of data made explorable in seconds</div>
 </div>
 </div>
 <div style="border-left:2px solid var(--accent);padding:.75rem 1.25rem;margin:1rem 0;background:rgba(200,168,122,0.05);">
 <div style="font-size:.9rem;color:var(--accent);font-style:italic;">"We've never been able to explore the city's finances like this."</div>
-<div style="font-size:.75rem;color:#666;margin-top:.3rem;font-family:'Helvetica Neue',sans-serif;">Comment from a Sunnyvale City Council member after the project presentation</div>
+<div style="font-size:.75rem;color:#9a9a9a;margin-top:.3rem;font-family:'Helvetica Neue',sans-serif;">Comment from a Sunnyvale City Council member after the project presentation</div>
 </div>
 <div class="eng-desc">Built an interactive analytics platform with a Santa Clara University professor that transformed ten years of municipal financial reports into searchable dashboards. By comparing multiple Santa Clara County cities, council members could explore regional financial trends in seconds instead of reading hundreds of pages of annual reports. Presented to the Sunnyvale City Council.</div>
 <div class="img-grid-4">
