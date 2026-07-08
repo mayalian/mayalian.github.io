@@ -78,7 +78,28 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 .question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
 .card-question{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.6rem 0 .7rem;font-family:'Helvetica Neue',sans-serif;line-height:1.5}
 
-@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}}
+.cg5-gallery{
+  padding:0;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:#111;
+}
+.cg5-gallery img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+}
+.cg5-highlight{
+  display:block;
+  color:var(--text);
+  margin-bottom:.75rem;
+}
+
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}}
 </style>
 </head>
 <body>
@@ -244,7 +265,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   <h2>Art &amp; Animation</h2>
   <div class="grid">
     <div class="card">
-      <div class="card-img" style="padding:0;overflow:hidden;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+      <div class="card-img cg5-gallery">
         <img class="thumb" data-group="cg5" data-idx="0" src="images/CG5-2024.jpg" style="width:100%;height:100%;object-fit:contain;background:#111;">
         <img class="thumb" data-group="cg5" data-idx="1" src="images/CG5-2025.jpg" style="width:100%;height:100%;object-fit:contain;background:#111;">
         <img class="thumb" data-group="cg5" data-idx="2" src="CG5-Poster-2026.jpeg" style="width:100%;height:100%;object-fit:contain;background:#111;">
@@ -253,7 +274,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
         <div class="card-tag">Illustration · 2026</div>
         <div class="card-title">CG5 Annual Concert Poster</div>
         <div class="card-question">Question: How do you make a concert poster communicate emotion before someone reads a word?</div>
-        <div class="card-desc">Official concert poster for three consecutive years. Led a small team of artists, contributing approximately 80% of each piece. 100+ hours each year. Original character design inspired by CG5's music and visual identity. Personally signed by CG5.</div>
+        <div class="card-desc"><span class="cg5-highlight">Official CG5 concert poster artist for three consecutive years.</span> Led a team of artists and created approximately 80% of each poster, including the overall composition, character design, and final rendering. Each poster took more than 100 hours to complete. Personally signed by CG5.</div>
       </div>
     </div>
     <div class="card" style="grid-column:1/-1;">
