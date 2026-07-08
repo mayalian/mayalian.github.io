@@ -138,16 +138,45 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 .rhythm-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:.75rem;
+  gap:1rem;
   margin-top:1.5rem;
 }
-.rhythm-grid img{
+.rhythm-frame{
+  background:#1c1c1c;
+  border:1px solid rgba(200,168,122,.42);
+  border-radius:6px;
+  padding:.55rem;
+  box-shadow:0 8px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03);
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+.rhythm-frame:hover{
+  border-color:var(--accent);
+  box-shadow:0 0 18px rgba(200,168,122,.16), 0 8px 24px rgba(0,0,0,.45);
+  transform:translateY(-2px);
+}
+.rhythm-frame img{
   width:100%;
   height:auto;
   object-fit:contain;
-  background:#111;
-  border:1px solid var(--border);
+  background:#000;
+  border:1px solid rgba(255,255,255,.08);
   display:block;
+  box-shadow:none;
+}
+.rhythm-label{
+  margin-top:.55rem;
+  color:var(--accent);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-align:center;
+}
+.rhythm-note{
+  margin-top:.5rem;
+  color:#777;
+  font-size:.78rem;
+  font-style:italic;
 }
 
 .rhythm-actions{
@@ -157,7 +186,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   margin-top:1rem;
 }
 
-@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.rhythm-grid{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.rhythm-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}.rhythm-frame{padding:.45rem}.rhythm-label{font-size:.62rem}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
 </style>
 </head>
 <body>
@@ -260,15 +289,28 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="eng-org">Personal Project · 2025</div>
 <div class="eng-title">Original Rhythm Game</div>
 <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What makes a rhythm game feel fair instead of mechanical?</div>
-<div class="eng-desc">Built an original four-lane rhythm game from scratch using Python and Pygame, combining programming, digital illustration, UI design, gameplay mechanics, timing logic, and scoring systems. Every visual asset, interface, and gameplay interaction was designed and implemented as part of a complete playable experience.</div>
+<div class="eng-desc">Built an original four-lane rhythm game from scratch using Python and Pygame. Designed every gameplay asset, interface, animation, and scoring system, including custom UI, note timing, hit detection, combo tracking, and performance analytics.</div>
 <div class="rhythm-actions">
 <a class="small-btn" href="#" onclick="openSingleVideo(event,'videos/rthym%20game.mp4','','Original Rhythm Game built in Python using Pygame. The demo includes live gameplay, music, scoring mechanics, and part of the implementation shown at the end.')">▶ Play Demo</a>
 </div>
-<div class="img-grid-4">
-<img alt="Instruction Screen" class="thumb" data-caption="Instruction Screen: Clear, asset-driven user onboarding explaining the 4-track mechanism and S-F-J-K controls." data-group="rhythm" data-idx="0" src="images/rhythm1.png"/>
-<img alt="Gameplay UI - Perfect Hit" class="thumb" data-caption="Gameplay UI: Real-time scoring feedback, combo count tracking, and precision hit detection." data-group="rhythm" data-idx="1" src="images/rhythm2.png"/>
-<img alt="Gameplay UI - Note Flow" class="thumb" data-caption="Gameplay UI: Custom vector arrows and lane feedback layers designed to enhance readability during dense note patterns." data-group="rhythm" data-idx="2" src="images/rhythm3.png"/>
-<img alt="Song Complete Results Screen" class="thumb" data-caption="Final Results Screen: Performance metrics breakdown tracking accuracy, peak combo, hit counts, and letter grade evaluation." data-group="rhythm" data-idx="3" src="images/rhythm4.png"/>
+<div class="rhythm-note">Watch gameplay and implementation. The video ends with part of the Python source code behind the game.</div>
+<div class="rhythm-grid">
+  <div class="rhythm-frame">
+    <img alt="Instruction Screen" class="thumb" data-caption="Instruction Screen: Clear onboarding explaining the four-track mechanism and S-F-J-K controls." data-group="rhythm" data-idx="0" src="images/rhythm1.png"/>
+    <div class="rhythm-label">Instructions</div>
+  </div>
+  <div class="rhythm-frame">
+    <img alt="Gameplay UI - Note Flow" class="thumb" data-caption="Gameplay UI: Custom vector arrows and lane feedback layers designed to preserve readability during dense note patterns." data-group="rhythm" data-idx="1" src="images/rhythm3.png"/>
+    <div class="rhythm-label">Live Gameplay</div>
+  </div>
+  <div class="rhythm-frame">
+    <img alt="Gameplay UI - Perfect Hit" class="thumb" data-caption="Gameplay UI: Real-time scoring feedback, combo tracking, and precision hit detection." data-group="rhythm" data-idx="2" src="images/rhythm2.png"/>
+    <div class="rhythm-label">Timing Feedback</div>
+  </div>
+  <div class="rhythm-frame">
+    <img alt="Song Complete Results Screen" class="thumb" data-caption="Final Results Screen: Performance metrics breakdown tracking accuracy, peak combo, hit counts, and letter grade evaluation." data-group="rhythm" data-idx="3" src="images/rhythm4.png"/>
+    <div class="rhythm-label">Performance Summary</div>
+  </div>
 </div>
 </div>
 <div class="eng-item" style="grid-column:1/-1">
