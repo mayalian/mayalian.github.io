@@ -134,7 +134,22 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
   display:block;
 }
 
-@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
+.rhythm-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.75rem;
+  margin-top:1.5rem;
+}
+.rhythm-grid img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+  display:block;
+}
+
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.rhythm-grid{grid-template-columns:repeat(2,1fr)}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
 </style>
 </head>
 <body>
@@ -145,6 +160,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
     <li><a href="#engineering">Engineering</a></li>
     <li><a href="#art">Art</a></li>
     <li><a href="#writing">Writing</a></li>
+    <li><a href="#questions">Questions</a></li>
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
@@ -241,11 +257,17 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
       </div>
     </div>
 
-    <div class="eng-item">
+    <div class="eng-item" style="grid-column:1/-1">
       <div class="eng-org">Personal Project · 2025</div>
-      <div class="eng-title">Rhythm Game</div>
+      <div class="eng-title">Original Rhythm Game</div>
       <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What makes a rhythm game feel fair instead of mechanical?</div>
-      <div class="eng-desc">Built from scratch in AP CS. Spent weeks on timing systems, audio feedback, and visual response until the game stopped feeling like code and started feeling like music. The problem that turned me into an engineer.</div>
+      <div class="eng-desc">Built a four-lane rhythm game from scratch, combining programming, digital art, UI design, scoring logic, and real-time player feedback. Designed the instruction screen, gameplay interface, timing system, hit accuracy, combo tracking, and final results screen so the game could teach itself through play.</div>
+      <div class="rhythm-grid">
+        <img class="thumb" data-group="rhythm" data-idx="0" src="images/rhythm1.png" alt="Rhythm Game Instructions" data-caption="Instruction screen. The game teaches the player the four tracks, controls, hit timing, and scoring rules before gameplay begins.">
+        <img class="thumb" data-group="rhythm" data-idx="1" src="images/rhythm2.png" alt="Rhythm Game Perfect Hit" data-caption="Gameplay screen showing arrow timing, score, accuracy, and immediate feedback for a perfect hit.">
+        <img class="thumb" data-group="rhythm" data-idx="2" src="images/rhythm3.png" alt="Rhythm Game Great Hit" data-caption="Gameplay screen showing real-time feedback when a note is slightly off the perfect timing window.">
+        <img class="thumb" data-group="rhythm" data-idx="3" src="images/rhythm4.png" alt="Rhythm Game Results" data-caption="Results screen showing rank, combo, accuracy, and hit breakdown after a completed song.">
+      </div>
     </div>
 
     <div class="eng-item">
