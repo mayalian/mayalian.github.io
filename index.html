@@ -338,7 +338,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="big-quote-attr">Comment from a Sunnyvale City Council member after the project presentation</div>
 </div>
 <div class="eng-desc">Working with a <strong>Santa Clara University professor</strong>, I began by studying ten years of municipal financial reports. Like most research projects, my first version was a traditional PowerPoint presentation. It summarized my findings, but something felt missing. Static slides could only answer the questions I had already asked. During the project, I watched someone demonstrate <strong>Power BI</strong> for the first time. I realized that interactive exploration could fundamentally change how people understood data. I taught myself the platform and rebuilt the project from scratch. What began as an analysis of one city has since evolved into an <strong>interactive platform</strong> comparing multiple cities across Santa Clara County. The platform now includes Sunnyvale, Santa Clara, and Mountain View, with additional cities being added as the research continues.</div>
-<a href="sunnyvale-ppt.pdf" target="_blank" onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'" style="display:inline-block;margin-top:1rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;">View Original Analysis (PDF)</a>
+<a class="small-btn" href="sunnyvale-ppt.pdf" target="_blank" style="display:inline-block;margin-top:1rem;">View Original Analysis (PDF)</a>
 <p style="display:none">Presented to the Sunnyvale City Council.</p>
 <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Four Growth Engines: Very Different Reliability</div>
 <div class="engine-grid">
@@ -502,13 +502,13 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="eng-org">AP US History · Pinewood School · 2025</div>
 <div class="eng-title">The Weight of Your Sins</div>
 <div class="eng-desc">Digital artwork and artist's statement for APUSH, arguing that "being American" means acknowledging the sacrifices that shaped the nation. Explores Gold, God, and Glory through visual symbolism connecting colonial atrocities to contemporary American identity.</div>
-<a href="#" onclick="openSingleImage(event,'images/eagle-apush.jpg')" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'" onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg)'" style="display:inline-block;margin-top:1rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;">View Artwork</a>
+<a class="small-btn" href="#" onclick="openSingleImage(event,'images/eagle-apush.jpg')" style="display:inline-block;margin-top:1rem;">View Artwork</a>
 </div>
 <div class="eng-item">
 <div class="eng-org">Literature 11 · Pinewood School · 2025</div>
 <div class="eng-title">The Scarlet Letter: Guilt, Shame, and Dimmesdale's Choice</div>
 <div class="eng-desc">In-class essay selected as a grade sample by Ms. Pojarska. Argues that Dimmesdale's death is not a tragedy of weakness but a testament to the unbearable weight of living as someone you are not, supported by close reading of Hawthorne's text.</div>
-<a href="scarlet-letter.pdf" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'" onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg)'" style="display:inline-block;margin-top:1rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;" target="_blank">Read Essay</a>
+<a class="small-btn" href="scarlet-letter.pdf" style="display:inline-block;margin-top:1rem;" target="_blank">Read Essay</a>
 </div>
 </div>
 </section>
@@ -647,7 +647,7 @@ document.getElementById('lb').addEventListener('touchend', function(e) {
     if (dx < 0) lbMove(e, 1);
     if (dx > 0) lbMove(e, -1);
   }
-}, { passive: false });
+}, { passive: true });
 
 document.addEventListener('keydown', function(e) {
   if (!document.getElementById('lb').classList.contains('open')) return;
