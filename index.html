@@ -71,7 +71,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 .ba-before-wrap{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden;border-right:2px solid var(--accent)}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--accent);pointer-events:none;transform:translateX(-1px)}
 .ba-handle::after{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2.4rem;height:2.4rem;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
-.ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:none}
 .ba-labels{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-family:'Helvetica Neue',sans-serif;margin-top:.6rem}
 .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:0 0 1.5rem}
 .stat-card{border:1px solid var(--border);padding:1rem 1.1rem}
@@ -98,7 +98,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 @media(max-width:768px){.three-q,.gallery-hover{grid-template-columns:repeat(2,1fr)}}
 .q-tag{display:inline-block;margin-bottom:1rem;padding:.3rem .8rem;border:1px solid var(--accent);color:var(--accent);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif}
 .big-quote{border-left:3px solid var(--accent);padding:1rem 1.5rem;margin:0 0 1.5rem;background:rgba(200,168,122,0.06)}
-.big-quote-text{font-size:1.35rem;line-height:1.45;color:var(--accent);font-style:italic}
+.big-quote-text{font-size:1.75rem;line-height:1.4;color:var(--accent);font-style:italic}
 .big-quote-attr{font-size:.78rem;color:#9a9a9a;margin-top:.6rem;font-family:'Helvetica Neue',sans-serif;letter-spacing:.03em}
 .insight-hint{font-size:.78rem;color:#9a9a9a;margin-top:.75rem;font-style:italic}
 .nasa-preview{margin-top:1.5rem;border:1px solid var(--border);background:#111;overflow:hidden;cursor:zoom-in;transition:border-color .3s,opacity .2s}
@@ -331,15 +331,15 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 </div>
 <div class="ba-labels"><span>Before &middot; Original ACFR Report</span><span>After &middot; Interactive Dashboard</span></div>
 </div>
-<div class="evolution-line"><span>Research Question</span> → PowerPoint Analysis → Discovered Power BI → Self-Taught Power BI → Sunnyvale Dashboard → Santa Clara &amp; Mountain View → Cross-City Platform</div>
+<div class="evolution-line"><span>Research Question</span> → 10-Year Financial Analysis → PowerPoint Prototype → Discovered Power BI → Self-Taught Power BI → Interactive Dashboard → Sunnyvale → Santa Clara → Mountain View → Regional Analytics Platform</div>
 <div class="impact-label">Impact</div>
 <div class="big-quote">
 <div class="big-quote-text">"We've never been able to explore the city's finances like this."</div>
 <div class="big-quote-attr">Comment from a Sunnyvale City Council member after the project presentation</div>
 </div>
-<div class="eng-desc">Working with a <strong>Santa Clara University professor</strong>, I began by studying ten years of municipal financial reports. Like most research projects, my first version was a traditional PowerPoint presentation. It summarized my findings, but something felt missing. Static slides could only answer the questions I had already asked. During the project, I watched someone demonstrate <strong>Power BI</strong> for the first time. I realized that interactive exploration could fundamentally change how people understood data. I taught myself the platform and rebuilt the project from scratch. What began as an analysis of one city has since evolved into an <strong>interactive platform</strong> comparing multiple cities across Santa Clara County. Today the platform continues to expand as additional cities are added, making regional financial patterns easier to compare and explore.</p>
+<div class="eng-desc">Working with a <strong>Santa Clara University professor</strong>, I began by studying ten years of municipal financial reports. Like most research projects, my first version was a traditional PowerPoint presentation. It summarized my findings, but something felt missing. Static slides could only answer the questions I had already asked. During the project, I watched someone demonstrate <strong>Power BI</strong> for the first time. I realized that interactive exploration could fundamentally change how people understood data. I taught myself the platform and rebuilt the project from scratch. What began as an analysis of one city has since evolved into an <strong>interactive platform</strong> comparing multiple cities across Santa Clara County. The platform now includes Sunnyvale, Santa Clara, and Mountain View, with additional cities being added as the research continues.</div>
 <a href="sunnyvale-ppt.pdf" target="_blank" onmouseover="this.style.background='var(--accent)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'" style="display:inline-block;margin-top:1rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;">View Original Analysis (PDF)</a>
-<p style="display:none"> Presented to the Sunnyvale City Council.</div>
+<p style="display:none">Presented to the Sunnyvale City Council.</p>
 <div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Four Growth Engines: Very Different Reliability</div>
 <div class="engine-grid">
 <div class="engine-card"><div class="engine-name">Property Tax</div><div class="engine-tag">Reliable</div><div class="engine-note">+114% in 9 yrs. Slows only if Silicon Valley office vacancy rises substantially.</div></div>
@@ -350,9 +350,9 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="insight-hint">Hover to see each page's focus. Click to zoom in.</div>
 <div class="gallery-hover">
 <div class="thumb-wrap"><img alt="Government-Wide Summary" class="thumb" data-caption="Government-wide summary: KPI cards with year-over-year trend." data-group="sunnyvale" data-idx="0" src="images/sunnyvale-2.jpg"/><div class="thumb-label">Government-Wide Summary</div></div>
-<div class="thumb-wrap"><img alt="Revenue and Expense Trend" class="thumb" data-caption="Multi-year revenue and expense trend comparison." data-group="sunnyvale" data-idx="1" src="images/sunnyvale-4.jpg"/><div class="thumb-label">Revenue &amp; Expense Trend</div></div>
+<div class="thumb-wrap"><img alt="Revenue and Expense Trend" class="thumb" data-caption="Multi-year revenue and expense trend comparison." data-group="sunnyvale" data-idx="1" src="images/sunnyvale-3.jpg"/><div class="thumb-label">Revenue &amp; Expense Trend</div></div>
 <div class="thumb-wrap"><img alt="General Fund by Category" class="thumb" data-caption="General Fund by category, detailed division-level view." data-group="sunnyvale" data-idx="2" src="images/sunnyvale-6.jpg"/><div class="thumb-label">General Fund by Category</div></div>
-<div class="thumb-wrap"><img alt="Outstanding Debt Trend" class="thumb" data-caption="Outstanding debt trend, FY2016 to FY2025." data-group="sunnyvale" data-idx="3" src="images/sunnyvale-8.jpg"/><div class="thumb-label">Outstanding Debt Trend</div></div>
+<div class="thumb-wrap"><img alt="Outstanding Debt Trend" class="thumb" data-caption="Outstanding debt trend over the past 10 years." data-group="sunnyvale" data-idx="3" src="images/sunnyvale-8.jpg"/><div class="thumb-label">Outstanding Debt Trend</div></div>
 </div>
 </div>
 </div>
