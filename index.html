@@ -15,9 +15,10 @@ nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;font-family:'Helvetica Neue',sans-serif}
 .nav-links a:hover{color:var(--accent)}
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem}
-.hero-inner{max-width:700px}
+.hero-inner{max-width:900px}
 .hero-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-family:'Helvetica Neue',sans-serif}
-h1{font-size:clamp(1.8rem,3.8vw,3rem);font-weight:normal;line-height:1.25;margin-bottom:1.5rem}
+h1{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:normal;line-height:1.2;margin-bottom:1.5rem;white-space:nowrap}
+@media(max-width:640px){h1{white-space:normal;font-size:clamp(1.6rem,7vw,2.2rem)}}
 .hero-sub{font-size:1.12rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-style:italic;line-height:1.7}
 .hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn{padding:.75rem 2rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;font-family:'Helvetica Neue',sans-serif}
@@ -268,8 +269,8 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="hero">
 <div class="hero-inner">
 <div class="hero-tag">Portfolio · 2024–2026</div>
-<h1>I rarely decide what I want to learn next. Instead, I usually run into a question I can't answer.</h1>
-<p class="hero-sub">Those questions have taken me from digital art to game development, robotics, city finance, and NASA. I'm still following them.</p>
+<h1>I rarely decide what I want to learn next.</h1>
+<p class="hero-sub">Most of the time, one project quietly leads me to another.</p>
 <div class="hero-links">
 <a class="btn btn-filled" href="#cities">See My Work</a>
 <a class="btn" href="#about">Who I Am</a>
