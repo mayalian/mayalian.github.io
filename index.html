@@ -1,71 +1,674 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maya Portfolio</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maya Lian ,  Portfolio</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:900px;margin:60px auto;padding:0 24px;line-height:1.7;color:#222}
-h1{font-size:3em;margin-bottom:.2em}
-h2{margin-top:2.5em}
-.hero{margin:80px 0}
-.tagline{font-size:1.8em;font-weight:600;max-width:760px}
-.subtitle{margin-top:1.2em;color:#555}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f0f;--surface:#1a1a1a;--accent:#c8a87a;--text:#eeeeee;--muted:#a8a8a8;--soft:#9a9a9a;--border:#2a2a2a}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(15,15,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100}
+.nav-name{font-size:1rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;font-family:'Helvetica Neue',sans-serif}
+.nav-links a:hover{color:var(--accent)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem}
+.hero-inner{max-width:700px}
+.hero-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-family:'Helvetica Neue',sans-serif}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:normal;line-height:1.15;margin-bottom:1.5rem}
+.hero-sub{font-size:1.12rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;font-style:italic;line-height:1.7}
+.hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.75rem 2rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;font-family:'Helvetica Neue',sans-serif}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.btn-filled{background:var(--accent);color:var(--bg)}
+.btn-filled:hover{background:transparent;color:var(--accent)}
+section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-family:'Helvetica Neue',sans-serif}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:normal;margin-bottom:3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.card{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:border-color .3s}
+.card:hover{border-color:var(--accent)}
+.card-img{width:100%;aspect-ratio:4/3;background:#222;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;letter-spacing:.1em;font-family:'Helvetica Neue',sans-serif}
+.card-body{padding:1.5rem}
+.card-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
+.card-title{font-size:1.1rem;margin-bottom:.5rem}
+.card-desc{font-size:.92rem;color:var(--muted);line-height:1.72}
+.eng-list{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.eng-item{border:1px solid var(--border);padding:2rem;transition:border-color .3s}
+.eng-item:hover{border-color:var(--accent)}
+.eng-org{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-family:'Helvetica Neue',sans-serif}
+.eng-title{font-size:1.15rem;margin-bottom:.75rem}
+.eng-desc{font-size:1rem;color:var(--muted);line-height:1.72}
+.img-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.5rem}
+.img-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
+.thumb{width:100%;aspect-ratio:auto;height:auto;object-fit:contain;border:1px solid rgba(200,168,122,.28);cursor:zoom-in;transition:opacity .2s,box-shadow .2s;background:#111;display:block;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.thumb:hover{opacity:.82}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1.35rem;font-size:1.04rem;line-height:1.78}
+.about-text p strong{color:var(--text)}
+.about-facts{border-left:1px solid var(--border);padding-left:2.5rem}
+.fact{margin-bottom:2rem}
+.fact-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;font-family:'Helvetica Neue',sans-serif}
+.fact-value{font-size:.98rem;color:var(--text);line-height:1.55}
+hr.divider{border:none;border-top:1px solid var(--border)}
+footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);font-family:'Helvetica Neue',sans-serif}
+/* LIGHTBOX */
+#lb{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.93);z-index:9999;align-items:center;justify-content:center}
+#lb.open{display:flex}
+#lb-close{position:fixed;top:1rem;right:1.5rem;color:#fff;font-size:2.5rem;cursor:pointer;z-index:10001;line-height:1;user-select:none}
+#lb-prev,#lb-next{color:#fff;font-size:4rem;cursor:pointer;padding:2rem;user-select:none;position:fixed;top:50%;transform:translateY(-50%);z-index:10002;min-width:72px;min-height:72px;display:flex;align-items:center;justify-content:center}
+#lb-prev{left:0}
+#lb-next{right:0}
+#lb-img{max-width:84vw;max-height:86vh;object-fit:contain}
+#lb-counter{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#c0c0c0;font-size:.85rem;font-family:sans-serif}
+
+.ba-slider{margin:1.5rem 0}
+.ba-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);background:#111;cursor:ew-resize;touch-action:pan-y}
+.ba-wrap img{position:absolute;top:0;left:0;height:100%;object-fit:cover;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.ba-after{width:100%}
+.ba-before-wrap{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden;border-right:2px solid var(--accent)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--accent);pointer-events:none;transform:translateX(-1px)}
+.ba-handle::after{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2.4rem;height:2.4rem;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:none}
+.ba-labels{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-family:'Helvetica Neue',sans-serif;margin-top:.6rem}
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin:0 0 1.5rem}
+.stat-card{border:1px solid var(--border);padding:1rem 1.1rem}
+.stat-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'Helvetica Neue',sans-serif;margin-bottom:.5rem}
+.stat-value{font-size:1.05rem;color:var(--text)}
+.stat-sub{font-size:.75rem;color:var(--accent);margin-top:.3rem}
+.engine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:.75rem 0 1.5rem}
+.engine-card{border:1px solid var(--border);padding:.9rem 1rem}
+.engine-name{font-size:.85rem;color:var(--text);margin-bottom:.25rem}
+.engine-tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;color:var(--accent);margin-bottom:.5rem}
+.engine-note{font-size:.75rem;color:#9a9a9a;line-height:1.5}
+.scenario-callout{border-left:2px solid var(--accent);padding:.9rem 1.25rem;margin:0 0 1.5rem;background:rgba(200,168,122,0.05)}
+.scenario-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-family:'Helvetica Neue',sans-serif;margin-bottom:.5rem}
+.scenario-text{font-size:.95rem;color:var(--text);line-height:1.6}
+@media(max-width:768px){.stat-strip,.engine-grid{grid-template-columns:repeat(2,1fr)}}
+.chapter-tag{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-family:'Helvetica Neue',sans-serif;margin-bottom:.6rem}
+.process-label,.impact-label,.challenge-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-family:'Helvetica Neue',sans-serif;margin:1.75rem 0 .75rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.challenge-label{margin-top:0;padding-top:0;border-top:none}
+.pull-quote{font-size:1.2rem;line-height:1.45;color:var(--accent);font-style:italic;text-align:center;margin:1.5rem 0;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.three-q{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin:0 0 1.5rem}
+.gallery-hover{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.thumb-wrap{position:relative;overflow:hidden;cursor:zoom-in}
+.thumb-wrap img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--border)}
+.thumb-label{position:absolute;inset:0;background:rgba(0,0,0,.6);color:var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;padding:.75rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;opacity:0;transition:opacity .25s;pointer-events:none}
+.thumb-wrap:hover .thumb-label{opacity:1}
+@media(max-width:768px){.three-q,.gallery-hover{grid-template-columns:repeat(2,1fr)}}
+.q-tag{display:inline-block;margin-bottom:1rem;padding:.3rem .8rem;border:1px solid var(--accent);color:var(--accent);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif}
+.big-quote{border-left:3px solid var(--accent);padding:1rem 1.5rem;margin:0 0 1.5rem;background:rgba(200,168,122,0.06)}
+.big-quote-text{font-size:1.75rem;line-height:1.4;color:var(--accent);font-style:italic}
+.big-quote-attr{font-size:.78rem;color:#9a9a9a;margin-top:.6rem;font-family:'Helvetica Neue',sans-serif;letter-spacing:.03em}
+.insight-hint{font-size:.78rem;color:#9a9a9a;margin-top:.75rem;font-style:italic}
+.nasa-preview{margin-top:1.5rem;border:1px solid var(--border);background:#111;overflow:hidden;cursor:zoom-in;transition:border-color .3s,opacity .2s}
+.nasa-preview:hover{border-color:var(--accent);opacity:.9}
+.nasa-preview img{width:100%;height:360px;object-fit:contain;object-position:center;display:block;background:#111}
+.nasa-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+.small-btn{display:inline-block;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Helvetica Neue',sans-serif;transition:all .3s;background:transparent;cursor:pointer}
+.small-btn:hover{background:var(--accent);color:var(--bg)}
+#lb-video{display:none;max-width:84vw;max-height:86vh;background:#000}
+#lb-caption{position:fixed;bottom:3rem;left:50%;transform:translateX(-50%);color:#eeeeee;font-size:.9rem;font-family:sans-serif;text-align:center;max-width:80vw;line-height:1.5;background:rgba(0,0,0,.72);padding:.6rem 1.2rem;border-radius:4px}
+
+
+.question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
+.question-card{border:1px solid var(--border);padding:1.4rem;background:var(--surface);color:var(--text);font-size:1.06rem;line-height:1.62}
+.question-card span{color:var(--accent);font-family:'Helvetica Neue',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.card-question{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.6rem 0 .7rem;font-family:'Helvetica Neue',sans-serif;line-height:1.5}
+
+.cg5-gallery{
+  padding:0;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:#111;
+}
+.cg5-gallery img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+}
+.cg5-highlight{
+  display:block;
+  color:var(--text);
+  margin-bottom:.75rem;
+}
+
+.cg5-feature{
+  grid-column:1/-1;
+}
+.cg5-feature .card-body{
+  padding:2rem 2rem 1.25rem;
+}
+.cg5-feature .card-title{
+  font-size:1.4rem;
+}
+.cg5-poster-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  padding:0 2rem 2rem;
+}
+.cg5-poster{
+  background:#111;
+}
+.cg5-year{
+  color:var(--accent);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:.45rem;
+}
+.cg5-poster img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#111;
+  border:1px solid var(--border);
+  display:block;
+}
+
+.rhythm-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+  margin-top:1.5rem;
+}
+.rhythm-frame{
+  background:#1c1c1c;
+  border:1px solid rgba(200,168,122,.42);
+  border-radius:6px;
+  padding:.55rem;
+  box-shadow:0 8px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03);
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+.rhythm-frame:hover{
+  border-color:var(--accent);
+  box-shadow:0 0 18px rgba(200,168,122,.16), 0 8px 24px rgba(0,0,0,.45);
+  transform:translateY(-2px);
+}
+.rhythm-frame img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#000;
+  border:1px solid rgba(255,255,255,.08);
+  display:block;
+  box-shadow:none;
+}
+.rhythm-label{
+  margin-top:.55rem;
+  color:var(--accent);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-align:center;
+}
+.rhythm-note{
+  margin-top:.65rem;
+  color:#b8b8b8;
+  font-size:.9rem;
+  line-height:1.55;
+  font-style:italic;
+}
+
+.rhythm-actions{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+  margin-top:1rem;
+}
+
+.related-questions{
+  margin-top:1rem;
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#c0c0c0;
+}
+.related-questions strong{color:var(--accent);font-weight:normal}
+.evolution-line{
+  margin:1.25rem 0;
+  padding:1rem 1.25rem;
+  border:1px solid rgba(200,168,122,.28);
+  background:rgba(200,168,122,.045);
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#c8c8c8;
+  line-height:1.8;
+}
+.evolution-line span{color:var(--accent)}
+
+
+@media(max-width:768px){.nasa-preview img{height:240px}nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.about-grid{grid-template-columns:1fr}.about-facts{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:2rem}.eng-list{grid-template-columns:1fr}.img-grid-4{grid-template-columns:repeat(2,1fr)}.rhythm-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}.rhythm-frame{padding:.45rem}.rhythm-label{font-size:.62rem}.cg5-gallery{grid-template-columns:1fr;gap:.75rem;padding:1rem}.cg5-gallery img{height:auto;max-height:none}.card-img.cg5-gallery{aspect-ratio:auto}.cg5-poster-row{grid-template-columns:1fr;gap:1.25rem;padding:0 1.25rem 1.5rem}.cg5-feature .card-body{padding:1.5rem}.cg5-feature .card-title{font-size:1.25rem}#lb-prev,#lb-next{font-size:3.25rem;padding:1.25rem;min-width:82px;min-height:82px;background:rgba(0,0,0,.25)}#lb-prev{left:.15rem}#lb-next{right:.15rem}#lb-img,#lb-video{max-width:88vw;max-height:78vh}#lb-caption{bottom:3.3rem;font-size:.78rem}#lb-counter{bottom:1rem}}
 </style>
 </head>
 <body>
-
-<section class="hero">
-<h1>Maya</h1>
-
-<p class="tagline">
-I rarely decide what I want to learn next.<br>
-Instead, I usually run into something I can't explain.
-</p>
-
-<p class="subtitle">
-Those questions have taken me from digital art to game development, robotics,
-city finance, and NASA. I'm still following them.
-</p>
-</section>
-
+<nav>
+<div class="nav-name">Maya Lian</div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#questions">Questions</a></li>
+<li><a href="#cities">Cities</a></li>
+<li><a href="#engineering">Engineering</a></li>
+<li><a href="#art">Art</a></li>
+<li><a href="#writing">Writing</a></li>
+</ul>
+</nav>
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-tag">Portfolio · 2024–2026</div>
+<h1>I study how people understand systems.</h1>
+<p class="hero-sub">I started as an artist who wanted to bring ideas to life. I became an engineer who never stopped drawing.</p>
+<div class="hero-links">
+<a class="btn btn-filled" href="#cities">See My Work</a>
+<a class="btn" href="#about">Who I Am</a>
+<a class="btn" href="#questions">Questions</a>
+<a class="btn" href="#writing">Writing</a>
+</div>
+</div>
+</div>
+<!-- ABOUT -->
+<section id="about">
+<div class="section-label">About</div>
 <h2>Who I Am</h2>
-
+<div class="about-grid">
+<div class="about-text">
 <p>I rarely decide what I want to learn next. Most of the time, one project quietly leads me to another.</p>
-
 <p>Drawing came first. Then I wanted my drawings to move, so I learned animation. Animation eventually wasn't enough, so I started building games. One research project turned into an interactive dashboard. Every project eventually reached a point where what I already knew wasn't enough.</p>
-
 <p>I've never been interested in learning tools for their own sake. What keeps me going is reaching the point where I don't know how to build something yet, then figuring it out anyway.</p>
-
 <p>That's how this portfolio ended up including digital art, game development, robotics, data visualization, and space exploration. They look unrelated. They've never felt that way to me.</p>
-
 <p>I don't know exactly where that path will lead. I only know I'll probably keep following it.</p>
+</div><div class="about-facts"><div class="fact"><div class="fact-label">Currently</div><div class="fact-value">Senior, Pinewood School, Los Altos Hills, CA</div></div><div class="fact"><div class="fact-label">Research</div><div class="fact-value">NASA Ames Research Center (2 summers) · Built multi-city financial analytics platform, presented to Sunnyvale City Council</div></div><div class="fact"><div class="fact-label">Recognition</div><div class="fact-value">NSDA Academic All-American · National Merit Semifinalist · CalGames Robotics Finalist</div></div><div class="fact"><div class="fact-label">Speech &amp; Debate</div><div class="fact-value">2× TOC Qualifier · 2× NIETOC Qualifier</div></div><div class="fact"><div class="fact-label">Publication</div><div class="fact-value">NASA Technical Report (NTRS 20250007247)</div></div><div class="fact"><div class="fact-label">Dance</div><div class="fact-value">Pinewood Dance Team · Selected to perform at Disney · Chose to continue dance throughout senior year</div></div><div class="fact"><div class="fact-label">Interests</div><div class="fact-value">Visualization · Robotics · Human-Centered Engineering · Digital Art</div></div></div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- QUESTIONS -->
+<section id="questions">
+<div class="section-label">Questions I'm Asking</div>
+<h2>What I'm Still Trying to Understand</h2>
+<div class="question-grid">
+<div class="question-card"><span>01</span>Why do some interfaces feel trustworthy?</div>
+<div class="question-card"><span>02</span>How can complex information become intuitive?</div>
+<div class="question-card"><span>03</span>Why can 50 milliseconds change whether a game feels fair?</div>
+<div class="question-card"><span>04</span>Can better visualization change the questions people ask?</div>
+<div class="question-card"><span>05</span>When does a drawing become a system?</div>
+<div class="question-card"><span>06</span>How can engineering help people understand the world?</div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- CITIES -->
+<section id="cities">
+<div class="section-label">Chapter 2 &middot; Understanding Cities Through Data</div>
+<h2>Understanding Cities Through Data</h2>
+<div class="eng-list">
+<div class="eng-item" style="grid-column:1/-1">
+<div class="eng-org">CompassPoint Mentorship Program · 2026</div>
+<div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: Can better visualization change the questions people ask?</div>
+<div class="q-tag">Question 04</div>
+<div class="eng-desc">Through the <strong>CompassPoint Mentorship Program</strong>, I explored how AI can help compare municipal financial systems that were never designed to be compared.</div>
+<div class="challenge-label">The Challenge</div>
+<div class="eng-desc">Each city's financial report runs hundreds of pages, and no two define their categories the same way. My first version was a PowerPoint that could only answer questions I'd already asked. The real engineering challenge wasn't building the dashboard. It was going city by city, deciding what was actually comparable, and building a framework that allowed meaningful comparisons across different accounting systems.</div>
+<div class="pull-quote">"The dashboard wasn't the breakthrough. Building a common language across different cities was."</div>
+<a class="small-btn" href="sunnyvale-ppt.pdf" target="_blank" style="display:inline-block;margin-top:1rem;">View Original Analysis (PDF)</a>
+<div class="process-label">Process</div>
+<div class="ba-slider">
+<div class="ba-wrap" data-ba>
+<img loading="lazy" class="ba-after" alt="Interactive Dashboard" src="images/sunnyvale-2.jpg"/>
+<div class="ba-before-wrap">
+<img loading="lazy" class="ba-before" alt="Original City Financial Report" src="images/sunnyvale1.jpg"/>
+</div>
+<div class="ba-handle"></div>
+<input class="ba-range" max="100" min="0" type="range" value="50"/>
+</div>
+<div class="ba-labels"><span>Before &middot; Original Financial Report</span><span>After &middot; Interactive Dashboard</span></div>
+</div>
+<div class="evolution-line"><span>300+ Page Financial Report</span> → Reconcile City Terminology → Normalize Accounting Structures → Build Common Framework → Validate with AI → Compare Cities → Power BI → Interactive Platform</div>
+<div class="three-q">
+<div class="stat-card"><div class="stat-label">01 &middot; City Got Wealthier</div><div class="stat-value">$728M → $1,654M</div><div class="stat-sub">+127% in 9 years</div></div>
+<div class="stat-card"><div class="stat-label">02 &middot; Where Revenue Goes</div><div class="stat-value">Sources, Mix &amp; Trends</div><div class="stat-sub">Where it comes from, where it's spent</div></div>
+<div class="stat-card"><div class="stat-label">03 &middot; What's Next</div><div class="stat-value">If Key Sources Change</div><div class="stat-sub">Stress-testing four paths to FY2030</div></div>
+</div>
+<div class="impact-label">Impact</div>
+<div class="big-quote">
+<div class="big-quote-text">"We've never been able to explore the city's finances like this."</div>
+<div class="big-quote-attr">Comment from a Sunnyvale City Council member after the project presentation</div>
+<div class="big-quote-attr" style="margin-top:.3rem;">Presented to the Sunnyvale City Council as part of an ongoing regional municipal analytics research project.</div>
+</div>
+<div class="eng-desc">Only after trustworthy data is built can meaningful questions be asked. The biggest breakthrough wasn't learning a new software tool. It was realizing that meaningful comparisons begin long before visualization, with a trustworthy data foundation and a shared framework.</div>
+<div style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Four Growth Engines: Very Different Reliability</div>
+<div class="engine-grid">
+<div class="engine-card"><div class="engine-name">Property Tax</div><div class="engine-tag">Reliable</div><div class="engine-note">+114% in 9 yrs. Slows only if Silicon Valley office vacancy rises substantially.</div></div>
+<div class="engine-card"><div class="engine-name">Development Fees</div><div class="engine-tag">Volatile</div><div class="engine-note">$8M ↔ $73M swings. Disappears if the Fed cuts to 2%. Entirely cycle-dependent.</div></div>
+<div class="engine-card"><div class="engine-name">Investment Earnings</div><div class="engine-tag">Temporary</div><div class="engine-note">Rate-dependent. A cut to 2% erases ~$35M/yr overnight. Not a permanent source.</div></div>
+<div class="engine-card"><div class="engine-name">Capital Grants</div><div class="engine-tag">Lumpy</div><div class="engine-note">Project-by-project. FY2022's $71M spike was a one-time federal grant.</div></div>
+</div>
+<div class="insight-hint">Hover to see each page's focus. Click to zoom in.</div>
+<div class="gallery-hover">
+<div class="thumb-wrap"><img loading="lazy" alt="Government-Wide Summary" class="thumb" data-caption="Government-wide summary: KPI cards with year-over-year trend." data-group="sunnyvale" data-idx="0" src="images/sunnyvale-2.jpg"/><div class="thumb-label">Government-Wide Summary</div></div>
+<div class="thumb-wrap"><img loading="lazy" alt="Revenue and Expense by Source" class="thumb" data-caption="Revenue and expense breakdown by source, FY2025." data-group="sunnyvale" data-idx="1" src="images/sunnyvale-3.jpg"/><div class="thumb-label">Revenue &amp; Expense by Source</div></div>
+<div class="thumb-wrap"><img loading="lazy" alt="General Fund by Category" class="thumb" data-caption="General Fund by category, detailed division-level view." data-group="sunnyvale" data-idx="2" src="images/sunnyvale-6.jpg"/><div class="thumb-label">General Fund by Category</div></div>
+<div class="thumb-wrap"><img loading="lazy" alt="Outstanding Debt Trend" class="thumb" data-caption="Outstanding debt trend over the past 10 years." data-group="sunnyvale" data-idx="3" src="images/sunnyvale-8.jpg"/><div class="thumb-label">Outstanding Debt Trend</div></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="divider"/>
+<!-- ENGINEERING -->
+<section id="engineering">
+<div class="section-label">Chapters 3-5 &middot; Engineering &amp; Interactive Work</div>
+<h2>Projects &amp; Research</h2>
+<div class="eng-list">
+<div class="eng-item" style="grid-column:1/-1">
+<div class="eng-org">NASA Ames Research Center · Summer 2025</div>
+<div class="chapter-tag">Chapter 3 &middot; Engineering Beyond Earth</div>
+<div class="eng-title">Mars City Visualization &amp; Habitat Design</div>
+<div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What would it take to design a believable city on Mars?</div>
+<div class="eng-desc">Collaborated with NASA Ames on the Mars City project, creating Blender-based 3D environments and infrastructure assets for future human habitats. Contributed to the Subsurface Habitat ("The Cave Home") and Mining Operations sections. Published through NASA NTRS (20250007247).</div>
+<div class="eng-desc" style="margin-top:.75rem;color:var(--text);"><strong>My contributions:</strong> Subsurface Habitat “The Cave Home” · Mining Operations · Blender-based Mars infrastructure visualization.</div>
+<div class="nasa-actions">
+<a class="small-btn" href="#" onclick="openSingleVideo(event,'videos/Mars%20Project%20compressed-3.mp4','videos/NASA1.jpg')">Watch Presentation</a>
+<a class="small-btn" href="https://ntrs.nasa.gov/citations/20250007247" target="_blank">NASA NTRS</a>
+</div>
+<div class="nasa-preview" onclick="openSingleVideo(event,'videos/Mars%20Project%20compressed-3.mp4','videos/NASA1.jpg')">
+<img loading="lazy" alt="NASA Mars Project Preview" src="videos/NASA1.jpg"/>
+</div>
+<div class="img-grid-4">
+<img loading="lazy" alt="NASA Project 2" class="thumb" data-group="nasa" data-idx="0" src="videos/NASA2.jpg"/>
+<img loading="lazy" alt="NASA Project 3" class="thumb" data-group="nasa" data-idx="1" src="videos/NASA3.jpg"/>
+<img loading="lazy" alt="NASA Project 4" class="thumb" data-group="nasa" data-idx="2" src="videos/NASA4.jpg"/>
+<img loading="lazy" alt="NASA Project 5" class="thumb" data-group="nasa" data-idx="3" src="videos/NASA5.jpg"/>
+<img loading="lazy" alt="NASA Project 6" class="thumb" data-group="nasa" data-idx="4" src="videos/NASA6.jpg"/>
+<img loading="lazy" alt="NASA Project 7" class="thumb" data-group="nasa" data-idx="5" src="videos/NASA7.jpg"/>
+<img loading="lazy" alt="NASA Project 8" class="thumb" data-group="nasa" data-idx="6" src="videos/NASA8.jpg"/>
+<img loading="lazy" alt="NASA Project 9" class="thumb" data-group="nasa" data-idx="7" src="videos/NASA9.jpg"/>
+<img loading="lazy" alt="NASA Project 10" class="thumb" data-group="nasa" data-idx="8" src="videos/NASA10.jpg"/>
+<img loading="lazy" alt="NASA Project 11" class="thumb" data-group="nasa" data-idx="9" src="videos/NASA11.jpg"/>
+<img loading="lazy" alt="NASA Project 12" class="thumb" data-group="nasa" data-idx="10" src="videos/NASA12.jpg"/>
+<img loading="lazy" alt="NASA Project Credits" class="thumb" data-caption="Official Project Credits ,  Maya Lian: Subsurface Habitat “The Cave Home” and Mining Operations" data-group="nasa" data-idx="11" src="videos/NASA13.jpg"/>
+</div>
+</div>
+<div class="eng-item" style="grid-column:1/-1">
+<div class="eng-org">AP Computer Science Principles · 2025</div>
+<div class="chapter-tag">Chapter 4 &middot; Building Interactive Experiences</div>
+<div class="eng-title">Original Rhythm Game</div>
+<div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: What makes a rhythm game feel fair instead of mechanical?</div>
+<div class="eng-desc">Developed as my AP Computer Science Principles Create Performance Task, this original four-lane rhythm game was built from scratch using Python and Pygame. While the project fulfilled the AP CSP requirement, its implementation extended well beyond the course curriculum, drawing on several years of prior Python experience. I designed every gameplay asset, interface, animation, timing system, hit detection, combo tracking, scoring logic, and performance analytics.</div>
+<div class="related-questions"><strong>Related Questions:</strong> 01 · 03</div>
+<div class="rhythm-actions">
+<a class="small-btn" href="#" onclick="openSingleVideo(event,'videos/rthym%20game.mp4','','Original Rhythm Game built in Python using Pygame. The demo includes live gameplay, music, scoring mechanics, and part of the implementation shown at the end.')">▶ Play Demo</a>
+</div>
+<div class="rhythm-note">Watch gameplay and implementation. The video ends with part of the Python source code behind the game.</div>
+<div class="rhythm-grid">
+  <div class="rhythm-frame">
+    <img loading="lazy" alt="Instruction Screen" class="thumb" data-caption="Instruction Screen: Clear onboarding explaining the four-track mechanism and S-F-J-K controls." data-group="rhythm" data-idx="0" src="images/rhythm1.png"/>
+    <div class="rhythm-label">Instructions</div>
+  </div>
+  <div class="rhythm-frame">
+    <img loading="lazy" alt="Gameplay UI - Note Flow" class="thumb" data-caption="Gameplay UI: Custom vector arrows and lane feedback layers designed to preserve readability during dense note patterns." data-group="rhythm" data-idx="1" src="images/rhythm3.png"/>
+    <div class="rhythm-label">Live Gameplay</div>
+  </div>
+  <div class="rhythm-frame">
+    <img loading="lazy" alt="Gameplay UI - Perfect Hit" class="thumb" data-caption="Gameplay UI: Real-time scoring feedback, combo tracking, and precision hit detection." data-group="rhythm" data-idx="2" src="images/rhythm2.png"/>
+    <div class="rhythm-label">Timing Feedback</div>
+  </div>
+  <div class="rhythm-frame">
+    <img loading="lazy" alt="Song Complete Results Screen" class="thumb" data-caption="Final Results Screen: Performance metrics breakdown tracking accuracy, peak combo, hit counts, and letter grade evaluation." data-group="rhythm" data-idx="3" src="images/rhythm4.png"/>
+    <div class="rhythm-label">Performance Summary</div>
+  </div>
+</div>
+</div>
+<div class="eng-item" style="grid-column:1/-1">
+<div class="eng-org">Pinewood School · Honors Biology · 2025</div>
+<div class="chapter-tag">Chapter 5 &middot; Making Invisible Systems Visible</div>
+<div class="eng-title">3D Cell Model in Blender</div>
+<div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: How do you make invisible biological structures visible and understandable?</div>
+<div class="eng-desc">Built a fully interactive 3D cell model in Blender for Honors Biology ,  the first and only 3D digital cell model in Pinewood School's history. Every organelle modeled with accurate spatial relationships and rendered for presentation.</div>
+<div class="related-questions"><strong>Related Questions:</strong> 02 · 06</div>
+<div class="img-grid-3">
+<img loading="lazy" alt="Cell Model 1" class="thumb" data-group="cell" data-idx="0" src="images/cell-model1.jpg"/>
+<img loading="lazy" alt="Cell Model 2" class="thumb" data-group="cell" data-idx="1" src="images/cell-model2.jpg"/>
+<img loading="lazy" alt="Cell Model 3" class="thumb" data-group="cell" data-idx="2" src="images/cell-model3.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<hr class="divider"/>
+<section id="art">
+<div class="section-label">Chapter 6 &middot; Ideas Becoming Reality</div>
+<h2>Visual Storytelling</h2>
+<div class="grid">
+<div class="card" style="grid-column:1/-1;">
+<div class="card-body" style="padding-bottom:1rem;">
+<div class="card-tag">Sequential Art · 2025</div>
+<div class="card-title">20 Years Reunion</div>
+<div class="card-question">Question: How do you make silence speak?</div>
+<div class="card-desc">Two former friends reunite after twenty years apart. The challenge wasn't writing their reunion, it was communicating it without dialogue. Every panel became an experiment in timing, body language, and emotional pacing, exploring how silence can carry as much weight as words. Drawn in one evening, I left the sketches intentionally rough to preserve the immediacy of the emotion.</div>
+</div>
+<div style="padding:0 1.5rem 1.5rem;display:flex;justify-content:center;">
+<img loading="lazy" alt="20 Years Reunion, all four panels" class="thumb" data-group="reunion" data-idx="0" src="images/20years-reunion-3.jpg" style="width:100%;max-width:440px;height:auto;display:block;object-fit:contain;border:1px solid var(--border);cursor:zoom-in;"/>
+</div>
+</div>
+<div class="card cg5-feature">
+<div class="card-body">
+<div class="card-tag">Illustration · 2024–2026</div>
+<div class="card-title">CG5 Annual Concert Poster</div>
+<div class="card-question">Question: How do you make a concert poster communicate emotion before someone reads a word?</div>
+<div class="card-desc"><span class="cg5-highlight">What began as a self-initiated project grew into designing CG5's concert posters for three consecutive years.</span> A concert poster has only a few seconds to make someone stop scrolling. Before anyone notices the details, they should already feel the energy, tension, or anticipation of the performance. Leading a team of artists, I designed the overall composition, character layouts, lighting, and final rendering, creating most of each poster myself. Drawn during my academically heaviest year, the 2026 poster featured over a dozen individually designed characters, took more than 100 hours to complete, and was personally signed by CG5. Every visual decision served the same goal: helping the audience feel the concert before it even began.</div>
+</div>
+<div class="cg5-poster-row">
+<div class="cg5-poster">
+<div class="cg5-year">2024</div>
+<img loading="lazy" alt="CG5 Concert Poster 2024" class="thumb" data-caption="CG5 Concert Poster 2024. CG5 concert poster artwork, with original character composition, lighting, and final rendering." data-group="cg5" data-idx="0" src="images/CG5-2024.jpg"/>
+</div>
+<div class="cg5-poster">
+<div class="cg5-year">2025</div>
+<img loading="lazy" alt="CG5 Concert Poster 2025" class="thumb" data-caption="CG5 Concert Poster 2025. CG5 concert poster artwork, developed as part of a multi-artist team led by Maya." data-group="cg5" data-idx="1" src="images/CG5-2025.jpg"/>
+</div>
+<div class="cg5-poster">
+<div class="cg5-year">2026</div>
+<img loading="lazy" alt="CG5 Concert Poster 2026" class="thumb" data-caption="CG5 Concert Poster 2026. CG5 concert poster artwork, continuing a three-year visual identity across CG5 concerts." data-group="cg5" data-idx="2" src="images/CG5-Poster-2026.jpeg?v=3" onerror="this.onerror=null;this.src='images/CG5-Poster-2026.jpeg';"/>
+</div>
+</div>
+<div class="card-body" style="padding-top:0;">
+<div class="card-tag">Growth</div>
+<div class="card-desc" style="margin-bottom:.75rem;font-size:.85rem;color:var(--soft);">2024 &rarr; 2025 &rarr; 2026</div>
+<div class="card-desc" style="font-size:.85rem;color:var(--soft);font-style:italic;">At fourteen, I filled the canvas because I didn't yet know what to leave out.</div>
+<div class="card-desc" style="font-size:.85rem;color:var(--soft);font-style:italic;">At fifteen, I learned that what a viewer notices first is a choice.</div>
+<div class="card-desc" style="font-size:.85rem;color:var(--soft);font-style:italic;">At sixteen, I realized atmosphere can speak louder than characters.</div>
+<div class="card-desc" style="font-size:.85rem;color:var(--soft);font-style:italic;">These posters reveal how my way of seeing changed, not just my artwork.</div>
+</div>
+</div>
+<div class="card" style="grid-column:1/-1;">
+<div class="card-body" style="padding-bottom:1rem;">
+<div class="card-tag">Process · Visual Thinking · Ongoing</div>
+<div class="card-title">Ideas Becoming Reality</div>
+<div class="card-question">Question: How does an idea become something real?</div>
+<div class="card-desc">Some ideas stayed on the screen. Others became robots, costumes, or research projects. A mechanical character eventually led me to join robotics because I wanted to understand the machines I was drawing. These pages document the experiments, revisions, and first attempts behind my work. They remind me that every finished project began with something I did not know how to build yet.</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;padding:0 1.5rem 1.5rem;">
+<img loading="lazy" alt="Mechanical Character Study" class="thumb" data-caption="Mechanical Character Study. I spent dozens of hours designing this character and imagining how every joint and mechanism would move. Eventually I realized I could draw machines long before I understood how they actually worked. That realization led me to join my school's robotics team." data-group="process" data-idx="0" src="images/machine-character.jpeg"/>
+<img loading="lazy" alt="Phone Visual Storytelling" class="thumb" data-caption="Visual storytelling exploring separation, communication, and emotional tension through composition and contrast." data-group="process" data-idx="1" src="images/phone.jpg"/>
+<img loading="lazy" alt="Christmas Girl Lighting Study" class="thumb" data-caption="Character illustration exploring lighting, atmosphere, and emotional storytelling." data-group="process" data-idx="2" src="images/christmas-girl.jpg"/>
+<img loading="lazy" alt="Tears Color Study" class="thumb" data-caption="Close-up study of expression and color, focusing on how subtle lighting changes emotional perception." data-group="process" data-idx="3" src="images/tears.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<hr class="divider"/>
+<section id="writing">
+<div class="section-label">Writing</div>
+<h2>Essays</h2>
+<div class="eng-list">
+<div class="eng-item">
+<div class="eng-org">AP US History · Pinewood School · 2025</div>
+<div class="eng-title">The Weight of Your Sins</div>
+<div class="eng-desc">Digital artwork and artist's statement for APUSH, arguing that "being American" means acknowledging the sacrifices that shaped the nation. Explores Gold, God, and Glory through visual symbolism connecting colonial atrocities to contemporary American identity.</div>
+<a class="small-btn" href="#" onclick="openSingleImage(event,'images/eagle-apush.jpg')" style="display:inline-block;margin-top:1rem;">View Artwork</a>
+</div>
+<div class="eng-item">
+<div class="eng-org">Literature 11 · Pinewood School · 2025</div>
+<div class="eng-title">The Scarlet Letter: Guilt, Shame, and Dimmesdale's Choice</div>
+<div class="eng-desc">In-class essay selected as a grade sample by Ms. Pojarska. Argues that Dimmesdale's death is not a tragedy of weakness but a testament to the unbearable weight of living as someone you are not, supported by close reading of Hawthorne's text. Reading literature taught me that systems are not always technical. Hawthorne's novel explores how invisible rules shape human choices, reminding me that engineering and literature often ask the same question from different directions.</div>
+<a class="small-btn" href="scarlet-letter.pdf" style="display:inline-block;margin-top:1rem;" target="_blank">Read Essay</a>
+</div>
+</div>
+</section>
+<footer>Maya Lian · mayalian.github.io · 2026</footer>
+<!-- LIGHTBOX -->
+<div id="lb" onclick="lbClose()">
+<span id="lb-close" onclick="lbClose()">×</span>
+<span id="lb-prev" onclick="lbMove(event,-1)">‹</span>
+<img loading="lazy" id="lb-img" onclick="event.stopPropagation()" src=""/>
+<video controls="" id="lb-video" onclick="event.stopPropagation()" preload="metadata"></video>
+<span id="lb-next" onclick="lbMove(event,1)">›</span>
+<div id="lb-caption"></div>
+<div id="lb-counter"></div>
+</div>
+<script>
+var LB = { group: [], idx: 0 };
 
-<h2>Questions I'm Asking</h2>
+document.querySelectorAll('[data-ba]').forEach(function(wrap) {
+  var beforeWrap = wrap.querySelector('.ba-before-wrap');
+  var beforeImg = wrap.querySelector('.ba-before');
+  var handle = wrap.querySelector('.ba-handle');
+  var range = wrap.querySelector('.ba-range');
+  function sizeImg() { beforeImg.style.width = wrap.clientWidth + 'px'; }
+  function setPos(pct) { beforeWrap.style.width = pct + '%'; handle.style.left = pct + '%'; }
+  window.addEventListener('resize', sizeImg);
+  sizeImg();
+  setPos(range.value);
+  range.addEventListener('input', function() { setPos(this.value); });
+});
+document.querySelectorAll('.thumb').forEach(function(img) {
+  img.addEventListener('click', function() {
+    var g = this.getAttribute('data-group');
+    LB.group = Array.from(document.querySelectorAll('[data-group="' + g + '"]'));
+    LB.idx = LB.group.indexOf(this);
+    lbShow();
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
 
-<p>The projects in this portfolio are different, but they keep leading me back to the same kinds of questions.</p>
 
-<ul>
-<li>How do people understand things they can't directly see?</li>
-<li>Why do small design decisions change what people notice?</li>
-<li>How do interactive systems help people explore ideas instead of simply receiving answers?</li>
-<li>How can technology make complicated information easier to understand without oversimplifying it?</li>
-</ul>
+function openSingleImage(e, src) {
+  e.preventDefault();
+  LB.group = [{ type: 'image', src: src }];
+  LB.idx = 0;
+  lbShow();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-<p>I don't expect to answer all of these questions anytime soon. That's part of why I enjoy them.</p>
+function openSingleVideo(e, src, poster, captionText) {
+  e.preventDefault();
+  LB.group = [{ type: 'video', src: src, poster: poster || '', caption: captionText || 'NASA Ames Research Center · Mars City Project Demonstration · NTRS 20250007247' }];
+  LB.idx = 0;
+  lbShow();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-<h2>Selected Projects</h2>
+function lbShow() {
+  var item = LB.group[LB.idx];
+  var img = document.getElementById('lb-img');
+  var video = document.getElementById('lb-video');
+  var caption = document.getElementById('lb-caption');
 
-<ul>
-<li>City Financial Data Visualization</li>
-<li>NASA Ames Research Center</li>
-<li>Robotics</li>
-<li>Rhythm Game</li>
-<li>3D Eukaryotic Cell</li>
-<li>Digital Art &amp; Illustration</li>
-<li>Graphic Design</li>
-<li>Speech &amp; Communication</li>
-</ul>
+  video.pause();
+  video.removeAttribute('src');
+  video.removeAttribute('poster');
+  video.load();
 
+  var isVideo = item.type === 'video';
+  if (isVideo) {
+    img.style.display = 'none';
+    video.style.display = 'block';
+    video.src = item.src;
+    if (item.poster) video.poster = item.poster;
+    caption.textContent = item.caption || '';
+    caption.style.display = item.caption ? 'block' : 'none';
+  } else {
+    video.style.display = 'none';
+    img.style.display = 'block';
+    img.src = item.src || item.getAttribute('src');
+
+    var imageCaption = item.caption || (item.getAttribute ? item.getAttribute('data-caption') : '');
+    if (imageCaption) {
+      caption.textContent = imageCaption;
+      caption.style.display = 'block';
+    } else {
+      caption.style.display = 'none';
+      caption.textContent = '';
+    }
+  }
+
+  var hasMultiple = LB.group.length > 1;
+  document.getElementById('lb-prev').style.display = hasMultiple ? 'block' : 'none';
+  document.getElementById('lb-next').style.display = hasMultiple ? 'block' : 'none';
+  document.getElementById('lb-counter').style.display = hasMultiple ? 'block' : 'none';
+
+  if (hasMultiple) {
+    document.getElementById('lb-counter').textContent = (LB.idx + 1) + ' / ' + LB.group.length;
+    document.getElementById('lb-prev').style.opacity = LB.idx > 0 ? '1' : '0.2';
+    document.getElementById('lb-next').style.opacity = LB.idx < LB.group.length - 1 ? '1' : '0.2';
+  }
+}
+
+function lbMove(e, dir) {
+  e.stopPropagation();
+  var next = LB.idx + dir;
+  if (next >= 0 && next < LB.group.length) { LB.idx = next; lbShow(); }
+}
+
+function lbClose() {
+  var video = document.getElementById('lb-video');
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+var touchStartX = 0;
+var touchStartY = 0;
+
+document.getElementById('lb').addEventListener('touchstart', function(e) {
+  if (!e.touches || e.touches.length === 0) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.getElementById('lb').addEventListener('touchend', function(e) {
+  if (!e.changedTouches || e.changedTouches.length === 0) return;
+  var dx = e.changedTouches[0].clientX - touchStartX;
+  var dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) && LB.group.length > 1) {
+    e.stopPropagation();
+    if (dx < 0) lbMove(e, 1);
+    if (dx > 0) lbMove(e, -1);
+  }
+}, { passive: true });
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+
+  if (LB.group.length <= 1) return;
+  if (e.key === 'ArrowLeft') lbMove(e, -1);
+  if (e.key === 'ArrowRight') lbMove(e, 1);
+});
+</script>
 </body>
 </html>
