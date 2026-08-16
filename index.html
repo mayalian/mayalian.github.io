@@ -18,7 +18,7 @@ nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 3rem;display:flex;justify
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem}
 .hero-inner{max-width:900px}
 .hero-tag{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-family:'Helvetica Neue',sans-serif}
-h1{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:normal;line-height:1.2;margin-bottom:1.5rem;white-space:nowrap}
+h1{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:normal;line-height:1.2;margin-bottom:1.5rem;white-space:nowrap;background:none!important;background-color:transparent!important;box-shadow:none!important}
 @media(max-width:640px){h1{white-space:normal;font-size:clamp(1.6rem,7vw,2.2rem)}}
 .hero-sub{font-size:1.5rem;color:var(--text);max-width:600px;margin:0 auto 2.5rem;font-style:italic;line-height:1.6}
 .hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -284,11 +284,11 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <h2>Who I Am</h2>
 <div class="about-grid">
 <div class="about-text">
-<p>I rarely decide what I want to learn next. Most of the time, one project quietly leads me to another.</p>
-<p>Drawing came first. Then I wanted my drawings to move, so I learned animation. Animation eventually wasn't enough, so I started building games. One research project turned into an interactive dashboard. Every project eventually reached a point where what I already knew wasn't enough.</p>
-<p>I've never been interested in learning tools for their own sake. What keeps me going is reaching the point where I don't know how to build something yet, then figuring it out anyway.</p>
-<p>That's how this portfolio ended up including digital art, game development, robotics, data visualization, and space exploration. They look unrelated. They've never felt that way to me.</p>
-<p>I don't know exactly where that path will lead. I only know I'll probably keep following it.</p>
+<p>I rarely decide what I want to learn next. Most of the time, one interest somehow leads me to another.</p>
+<p>Drawing came first, but eventually I wanted my drawings to move, so I taught myself animation. Then I became interested in making games, which gave me a reason to learn programming. As my projects grew, I kept running into things I didn't know how to do yet, whether that meant learning 3D modeling for a NASA project, figuring out how software and hardware worked together in robotics, or turning years of city financial reports into something people could actually explore.</p>
+<p>I've never been particularly interested in learning a new tool just for the sake of knowing how to use it. Usually, I learn something because there's an idea I want to make real, and what I already know isn't enough to get me there.</p>
+<p>That's why this portfolio includes projects in digital art, game development, robotics, data visualization, and space exploration. They might seem like very different interests, but to me, they've always felt connected. Each one gave me a reason to learn something I hadn't expected to learn before.</p>
+<p>I still don't know exactly where all of these interests will take me, and I don't really want to decide yet.</p>
 </div><div class="about-facts"><div class="fact"><div class="fact-label">Currently</div><div class="fact-value">Senior, Pinewood School, Los Altos Hills, CA</div></div><div class="fact"><div class="fact-label">Research</div><div class="fact-value">NASA Ames Research Center (2 summers) · Built multi-city financial analytics platform, presented to Sunnyvale City Council</div></div><div class="fact"><div class="fact-label">Recognition</div><div class="fact-value">AP Scholar with Distinction (7/7 AP exams scored 5) · NSDA Academic All-American · National Merit Semifinalist · CalGames Robotics Finalist</div></div><div class="fact"><div class="fact-label">Speech &amp; Debate</div><div class="fact-value">2× TOC Qualifier · 2× NIETOC Qualifier</div></div><div class="fact"><div class="fact-label">Publication</div><div class="fact-value">NASA Technical Report (NTRS 20250007247)</div></div><div class="fact"><div class="fact-label">Dance</div><div class="fact-value">Pinewood Dance Team · Selected to perform at Disney · Chose to continue dance throughout senior year</div></div><div class="fact"><div class="fact-label">Interests</div><div class="fact-value">Visualization · Robotics · Human-Centered Engineering · Digital Art</div></div></div>
 </div>
 </section>
@@ -316,7 +316,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 <div class="eng-org">CompassPoint Mentorship Program · 2026</div>
 <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;font-family:'Helvetica Neue',sans-serif;">Question: Can better visualization change the questions people ask?</div>
 <div class="q-tag">Question 04</div>
-<div class="eng-desc">Through the <strong>CompassPoint Mentorship Program</strong>, I explored how AI can help compare municipal financial systems that were never designed to be compared.</div>
+<div class="eng-desc">Through the <strong>CompassPoint Mentorship Program</strong>, I worked on a way to compare municipal financial systems that were never designed to be compared.</div>
 <div class="challenge-label">The Challenge</div>
 <div class="eng-desc">Each city's financial report runs hundreds of pages, and no two define their categories the same way. My first version was a PowerPoint that could only answer questions I'd already asked. The real engineering challenge wasn't building the dashboard. It was going city by city, deciding what was actually comparable, and building a framework that allowed meaningful comparisons across different accounting systems.</div>
 <div class="pull-quote">"The dashboard wasn't the breakthrough. Building a common language across different cities was."</div>
@@ -333,7 +333,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem;b
 </div>
 <div class="ba-labels"><span>Before &middot; Original Financial Report</span><span>After &middot; Interactive Dashboard</span></div>
 </div>
-<div class="evolution-line"><span>300+ Page Financial Report</span> → Reconcile City Terminology → Normalize Accounting Structures → Build Common Framework → Validate with AI → Compare Cities → Power BI → Interactive Platform</div>
+<div class="evolution-line"><span>300+ Page Financial Report</span> → Reconcile City Terminology → Normalize Accounting Structures → Build Common Framework → Validate Data → Compare Cities → Power BI → Interactive Platform</div>
 <div class="three-q">
 <div class="stat-card"><div class="stat-label">01 &middot; City Got Wealthier</div><div class="stat-value">$728M → $1,654M</div><div class="stat-sub">+127% in 9 years</div></div>
 <div class="stat-card"><div class="stat-label">02 &middot; Where Revenue Goes</div><div class="stat-value">Sources, Mix &amp; Trends</div><div class="stat-sub">Where it comes from, where it's spent</div></div>
